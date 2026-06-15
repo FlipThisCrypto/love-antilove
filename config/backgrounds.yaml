@@ -32,14 +32,26 @@ backgrounds:
     - name: Pumpkin Eclipse
       colors: ["#3B1820", "#A83A1E", "#F28C28", "#FFD27A"]
       pattern: eclipse
+    - name: Blockchain Ember Grid
+      colors: ["#3B1820", "#B43A1E", "#F47A2D", "#FFD27A"]
+      pattern: blockchain_grid
+    - name: Tangerine Chainlink
+      colors: ["#261018", "#E96B22", "#FFB84E", "#FFE1A6"]
+      pattern: blockchain_links
   epic:
     - name: Infernal Gold
       colors: ["#2D1014", "#9D2B17", "#F06A22", "#FFC857", "#FFF0B7"]
       pattern: ornate_rays
+    - name: Tang Gang Flame Wall
+      colors: ["#1F0907", "#A82B12", "#FF5A1F", "#FF9F2E", "#FFE06E"]
+      pattern: tang_gang_flames
   legendary:
     - name: Solar Blood Moon
       colors: ["#18080C", "#661111", "#C02A16", "#FF7A1C", "#FFD86A", "#FFF5BD"]
       pattern: legendary_aura
+    - name: Tang Gang Crown
+      colors: ["#120506", "#661111", "#D22F12", "#FF7A1C", "#FFC21F", "#FFF0A8"]
+      pattern: tang_gang_crown
 
 rarity_background_tiers:
   Common: common

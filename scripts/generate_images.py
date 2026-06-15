@@ -116,7 +116,7 @@ def draw_background(style: dict, size: int) -> Image.Image:
 
     accent = colors[-1]
     mid = colors[len(colors) // 2]
-    if pattern in {"pixel_sparks", "legendary_aura", "ornate_rays"}:
+    if pattern in {"pixel_sparks", "legendary_aura", "ornate_rays", "blockchain_grid", "blockchain_links", "tang_gang_flames", "tang_gang_crown"}:
         for i in range(44):
             x = (i * 97 + size // 7) % size
             y = (i * 53 + size // 5) % size
@@ -135,6 +135,45 @@ def draw_background(style: dict, size: int) -> Image.Image:
             x = int(cx + (size * 0.62) * __import__("math").cos(angle * 6.28318))
             y = int(cy + (size * 0.62) * __import__("math").sin(angle * 6.28318))
             draw.line((cx, cy, x, y), fill=accent[:3] + (24,), width=max(1, size // 192))
+    if pattern in {"blockchain_grid", "blockchain_links"}:
+        step = max(32, size // 10)
+        node_r = max(5, size // 96)
+        line_color = accent[:3] + (72,)
+        node_color = colors[-2][:3] + (132,)
+        for y in range(step // 2, size, step):
+            for x in range(step // 2, size, step):
+                if x + step < size:
+                    draw.line((x, y, x + step, y), fill=line_color, width=max(1, size // 220))
+                if y + step < size:
+                    draw.line((x, y, x, y + step), fill=line_color, width=max(1, size // 220))
+                draw.rectangle((x - node_r, y - node_r, x + node_r, y + node_r), fill=node_color)
+        if pattern == "blockchain_links":
+            for i in range(12):
+                x = (i * 83 + size // 6) % size
+                y = (i * 127 + size // 8) % size
+                r = max(14, size // 34)
+                draw.rounded_rectangle((x - r, y - r // 2, x + r, y + r // 2), radius=r // 2, outline=accent[:3] + (110,), width=max(2, size // 160))
+    if pattern in {"tang_gang_flames", "tang_gang_crown"}:
+        flame = colors[-2]
+        for i in range(20):
+            x = int((i + 0.5) * size / 20)
+            h = int(size * (0.18 + (i % 5) * 0.025))
+            draw.polygon(
+                [(x - size // 20, size), (x, size - h), (x + size // 20, size)],
+                fill=flame[:3] + (78,),
+            )
+        if pattern == "tang_gang_crown":
+            base_y = int(size * 0.18)
+            crown = [
+                (int(size * 0.28), base_y + size // 12),
+                (int(size * 0.36), base_y - size // 24),
+                (int(size * 0.44), base_y + size // 14),
+                (int(size * 0.50), base_y - size // 14),
+                (int(size * 0.56), base_y + size // 14),
+                (int(size * 0.64), base_y - size // 24),
+                (int(size * 0.72), base_y + size // 12),
+            ]
+            draw.line(crown, fill=accent[:3] + (145,), width=max(4, size // 96), joint="curve")
 
     return image.filter(ImageFilter.GaussianBlur(0.4))
 

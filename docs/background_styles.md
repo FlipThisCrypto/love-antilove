@@ -22,14 +22,18 @@ Rare backgrounds:
 - Ember Halo
 - Molten Rose
 - Pumpkin Eclipse
+- Blockchain Ember Grid
+- Tangerine Chainlink
 
 Epic background:
 
 - Infernal Gold
+- Tang Gang Flame Wall
 
 Legendary background:
 
 - Solar Blood Moon
+- Tang Gang Crown
 
 ## Final Collection Behavior
 
@@ -60,4 +64,22 @@ Output:
 ```text
 outputs/variants/64bit/images/
 outputs/reports/64bit_orange_bg_sheet.jpg
+```
+
+## New Preview Styles
+
+Blockchain preview styles:
+
+- Blockchain Ember Grid
+- Tangerine Chainlink
+
+Tang Gang rare-preview styles:
+
+- Tang Gang Flame Wall
+- Tang Gang Crown
+
+Preview sheet:
+
+```text
+outputs/reports/new_background_preview_sheet.jpg
 ```
