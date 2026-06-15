@@ -1,4 +1,4 @@
-# 8-Bit, 16-Bit, and 32-Bit Variant Batch
+# 8-Bit, 16-Bit, 32-Bit, and 64-Bit Variant Batch
 
 This batch creates 512x512 preview variants for comparing retro pixel intensity.
 
@@ -14,6 +14,7 @@ Output folders:
 outputs/variants/8bit/images/
 outputs/variants/16bit/images/
 outputs/variants/32bit/images/
+outputs/variants/64bit/images/
 ```
 
 Combined comparison sheet:
@@ -49,6 +50,15 @@ style-preset: 32bit
 pixel-size: 4
 palette-colors: 192
 visible RGB colors after alpha cleanup: about 188-191
+```
+
+64-bit:
+
+```text
+style-preset: 64bit
+pixel-size: 3
+palette-colors: 256
+visible RGB colors after alpha cleanup: usually under 256
 ```
 
 All variants are generated at 512x512 with transparent PNG output where possible.

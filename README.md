@@ -71,7 +71,7 @@ python scripts/preview_loop.py --iterations 1 --love 3 --antilove 3 --image-mode
 
 Use `--pixel-size 4`, `6`, or `8` to control how chunky the final pixel treatment feels.
 
-Generate 512x512 8-bit, 16-bit, and 32-bit comparison variants:
+Generate 512x512 8-bit, 16-bit, 32-bit, and 64-bit comparison variants:
 
 ```powershell
 python scripts/generate_bit_variants.py --image-mode comfyui --size 512 --love 3 --antilove 3 --seed 900

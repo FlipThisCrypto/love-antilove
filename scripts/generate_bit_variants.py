@@ -14,6 +14,7 @@ PRESETS = {
     "8bit": {"pixel_size": 10, "palette_colors": 32},
     "16bit": {"pixel_size": 6, "palette_colors": 96},
     "32bit": {"pixel_size": 4, "palette_colors": 192},
+    "64bit": {"pixel_size": 3, "palette_colors": 256},
 }
 
 
@@ -34,7 +35,7 @@ def copy_outputs(preset: str) -> None:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Generate 8-bit, 16-bit, and 32-bit 512px preview variants.")
+    parser = argparse.ArgumentParser(description="Generate 8-bit, 16-bit, 32-bit, and 64-bit 512px preview variants.")
     parser.add_argument("--love", type=int, default=3)
     parser.add_argument("--antilove", type=int, default=3)
     parser.add_argument("--size", type=int, default=512)

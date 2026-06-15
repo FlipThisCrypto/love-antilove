@@ -176,7 +176,22 @@ def queue_comfy(prompt: str, negative: str, seed: int, output_prefix: str, size:
     return response.json()["prompt_id"]
 
 
-def fetch_comfy_result(prompt_id: str, target_path: Path, timeout_seconds: int = 900) -> None:
+def copy_latest_comfy_output(edition: int, target_path: Path) -> bool:
+    output_dir = PROJECT_ROOT.parent / "ComfyUI" / "output" / "love_antilove"
+    matches = sorted(
+        output_dir.glob(f"{edition:03d}_*.png"),
+        key=lambda path: path.stat().st_mtime,
+        reverse=True,
+    )
+    if not matches:
+        return False
+    target_path.parent.mkdir(parents=True, exist_ok=True)
+    target_path.write_bytes(matches[0].read_bytes())
+    remove_corner_background(target_path)
+    return True
+
+
+def fetch_comfy_result(prompt_id: str, target_path: Path, edition: int, timeout_seconds: int = 900) -> None:
     config = load_yaml(PROJECT_ROOT / "config" / "collection.yaml")
     base_url = config["generation"]["comfyui_url"]
     deadline = time.time() + timeout_seconds
@@ -202,6 +217,8 @@ def fetch_comfy_result(prompt_id: str, target_path: Path, timeout_seconds: int =
                     remove_corner_background(target_path)
                     return
         time.sleep(2)
+    if copy_latest_comfy_output(edition, target_path):
+        return
     raise TimeoutError(f"Timed out waiting for ComfyUI prompt {prompt_id}")
 
 
@@ -307,7 +324,7 @@ def generate(
                 size,
                 reference_image,
             )
-            fetch_comfy_result(prompt_id, image_path)
+            fetch_comfy_result(prompt_id, image_path, edition)
             pixelate_image(image_path, pixel_size, palette_colors)
             print(f"Saved ComfyUI result for {edition:03d} to {image_path}")
             time.sleep(0.15)

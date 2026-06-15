@@ -23,6 +23,11 @@ STYLE_PRESETS = {
         "rich but controlled palette, crisp outline, more detailed shading and ornamentation, "
         "premium collectible retro fantasy character aesthetic. "
     ),
+    "64bit": (
+        "64-bit high-detail pixel art, late retro RPG character sprite, subtle visible pixel clusters, "
+        "large controlled color palette, crisp outline, refined shading and ornate readable accessories, "
+        "premium high-resolution retro fantasy collectible aesthetic. "
+    ),
 }
 
 

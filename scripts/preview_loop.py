@@ -132,7 +132,7 @@ def main() -> None:
     parser.add_argument("--antilove", type=int, default=3, help="ANTILOVE previews per iteration.")
     parser.add_argument("--seed", type=int, default=888, help="Base seed. Each iteration increments it by 1.")
     parser.add_argument("--image-mode", choices=["placeholder", "comfyui"], default="placeholder")
-    parser.add_argument("--style-preset", choices=["default", "8bit", "16bit", "32bit"], default=None)
+    parser.add_argument("--style-preset", choices=["default", "8bit", "16bit", "32bit", "64bit"], default=None)
     parser.add_argument("--size", type=int, default=None, help="Override square image size for this run.")
     parser.add_argument("--pixel-size", type=int, default=None, help="Postprocess pixel block size.")
     parser.add_argument("--palette-colors", type=int, default=None, help="Quantize final image to this many colors.")
