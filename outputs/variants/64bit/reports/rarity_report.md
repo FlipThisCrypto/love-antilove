@@ -9,67 +9,76 @@
 
 ## Trait Counts
 ### ANTILOVE - Aura
-- Black Roses: 2
+- Shadow Flames: 1
 - Broken Hearts: 1
+- Glitch Particles: 1
+
+### ANTILOVE - Background
+- Amber Wash: 1
+- Sunset Flat: 1
+- Apricot Glow: 1
 
 ### ANTILOVE - Dark Humor Accessory
-- Love Is Overrated Sign: 2
 - Regret Potion: 1
+- Love Is Overrated Sign: 1
+- Toxic Love Bottle: 1
 
 ### ANTILOVE - Detail
-- mischievous smirk: 2
-- tiny cracked heart pin: 1
+- tiny cracked heart pin: 2
+- mischievous smirk: 1
 
 ### ANTILOVE - Familiar
 - Raven: 2
-- Void Fox: 1
+- Shadow Cat: 1
 
 ### ANTILOVE - Hat
-- Spiked Heart Hat: 2
-- Black Rose Hat: 1
+- Black Rose Hat: 2
+- Thorn Witch Hat: 1
 
 ### ANTILOVE - Material
+- dull silver: 2
 - dark oak: 1
-- dull silver: 1
-- patched velvet: 1
 
 ### ANTILOVE - Robe
-- Crimson Grief Robe: 1
-- Gothic Heart Robe: 1
-- Void Love Robe: 1
+- Void Love Robe: 2
+- Torn Shadow Robe: 1
 
 ### ANTILOVE - Staff
-- Shadow Rose Staff: 2
+- Broken Heart Staff: 1
 - Void Crystal Staff: 1
+- Shadow Rose Staff: 1
 
 ### LOVE - Aura
-- Floating Hearts: 2
+- Floating Hearts: 1
 - Rainbow Heart Glow: 1
+- Rose Petals: 1
+
+### LOVE - Background
+- Sunset Flat: 2
+- Amber Wash: 1
 
 ### LOVE - Detail
-- tiny heart charm: 2
-- gentle smile: 1
+- gentle smile: 2
+- tiny heart charm: 1
 
 ### LOVE - Familiar
-- Bunny: 1
-- Heart Cat: 1
+- Fox: 1
 - Baby Dragon: 1
+- Heart Cat: 1
 
 ### LOVE - Hat
-- Starheart Cap: 2
+- Rose Halo Hat: 2
 - Winged Heart Hat: 1
 
 ### LOVE - Material
-- soft cotton: 1
-- polished wood: 1
+- polished wood: 2
 - warm gold: 1
 
 ### LOVE - Robe
-- Pink Gold Robe: 1
-- Celestial Love Robe: 1
+- Celestial Love Robe: 2
 - Lavender Light Robe: 1
 
 ### LOVE - Staff
+- Crystal Heart Staff: 1
 - Rose Staff: 1
 - Cupid Wand: 1
-- Heart Staff: 1

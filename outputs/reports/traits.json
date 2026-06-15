@@ -11,31 +11,35 @@
       },
       {
         "trait_type": "Hat",
-        "value": "Winged Heart Hat"
+        "value": "Rose Halo Hat"
       },
       {
         "trait_type": "Robe",
-        "value": "Pink Gold Robe"
+        "value": "Celestial Love Robe"
       },
       {
         "trait_type": "Staff",
-        "value": "Rose Staff"
+        "value": "Crystal Heart Staff"
       },
       {
         "trait_type": "Familiar",
-        "value": "Bunny"
+        "value": "Fox"
       },
       {
         "trait_type": "Aura",
-        "value": "Rainbow Heart Glow"
+        "value": "Floating Hearts"
       },
       {
         "trait_type": "Material",
-        "value": "soft cotton"
+        "value": "polished wood"
       },
       {
         "trait_type": "Detail",
         "value": "gentle smile"
+      },
+      {
+        "trait_type": "Background",
+        "value": "Sunset Flat"
       }
     ]
   },
@@ -51,7 +55,7 @@
       },
       {
         "trait_type": "Hat",
-        "value": "Starheart Cap"
+        "value": "Rose Halo Hat"
       },
       {
         "trait_type": "Robe",
@@ -59,15 +63,15 @@
       },
       {
         "trait_type": "Staff",
-        "value": "Cupid Wand"
+        "value": "Rose Staff"
       },
       {
         "trait_type": "Familiar",
-        "value": "Heart Cat"
+        "value": "Baby Dragon"
       },
       {
         "trait_type": "Aura",
-        "value": "Floating Hearts"
+        "value": "Rainbow Heart Glow"
       },
       {
         "trait_type": "Material",
@@ -76,6 +80,10 @@
       {
         "trait_type": "Detail",
         "value": "tiny heart charm"
+      },
+      {
+        "trait_type": "Background",
+        "value": "Sunset Flat"
       }
     ]
   },
@@ -91,7 +99,7 @@
       },
       {
         "trait_type": "Hat",
-        "value": "Starheart Cap"
+        "value": "Winged Heart Hat"
       },
       {
         "trait_type": "Robe",
@@ -99,15 +107,15 @@
       },
       {
         "trait_type": "Staff",
-        "value": "Heart Staff"
+        "value": "Cupid Wand"
       },
       {
         "trait_type": "Familiar",
-        "value": "Baby Dragon"
+        "value": "Heart Cat"
       },
       {
         "trait_type": "Aura",
-        "value": "Floating Hearts"
+        "value": "Rose Petals"
       },
       {
         "trait_type": "Material",
@@ -115,7 +123,11 @@
       },
       {
         "trait_type": "Detail",
-        "value": "tiny heart charm"
+        "value": "gentle smile"
+      },
+      {
+        "trait_type": "Background",
+        "value": "Amber Wash"
       }
     ]
   },
@@ -131,15 +143,15 @@
       },
       {
         "trait_type": "Hat",
-        "value": "Spiked Heart Hat"
+        "value": "Thorn Witch Hat"
       },
       {
         "trait_type": "Robe",
-        "value": "Crimson Grief Robe"
+        "value": "Torn Shadow Robe"
       },
       {
         "trait_type": "Staff",
-        "value": "Shadow Rose Staff"
+        "value": "Broken Heart Staff"
       },
       {
         "trait_type": "Familiar",
@@ -147,19 +159,23 @@
       },
       {
         "trait_type": "Aura",
-        "value": "Black Roses"
+        "value": "Shadow Flames"
       },
       {
         "trait_type": "Dark Humor Accessory",
-        "value": "Love Is Overrated Sign"
+        "value": "Regret Potion"
       },
       {
         "trait_type": "Material",
-        "value": "dark oak"
+        "value": "dull silver"
       },
       {
         "trait_type": "Detail",
         "value": "mischievous smirk"
+      },
+      {
+        "trait_type": "Background",
+        "value": "Amber Wash"
       }
     ]
   },
@@ -175,11 +191,11 @@
       },
       {
         "trait_type": "Hat",
-        "value": "Spiked Heart Hat"
+        "value": "Black Rose Hat"
       },
       {
         "trait_type": "Robe",
-        "value": "Gothic Heart Robe"
+        "value": "Void Love Robe"
       },
       {
         "trait_type": "Staff",
@@ -187,23 +203,27 @@
       },
       {
         "trait_type": "Familiar",
-        "value": "Raven"
+        "value": "Shadow Cat"
       },
       {
         "trait_type": "Aura",
-        "value": "Black Roses"
+        "value": "Broken Hearts"
       },
       {
         "trait_type": "Dark Humor Accessory",
-        "value": "Regret Potion"
+        "value": "Love Is Overrated Sign"
       },
       {
         "trait_type": "Material",
-        "value": "dull silver"
+        "value": "dark oak"
       },
       {
         "trait_type": "Detail",
         "value": "tiny cracked heart pin"
+      },
+      {
+        "trait_type": "Background",
+        "value": "Sunset Flat"
       }
     ]
   },
@@ -231,23 +251,27 @@
       },
       {
         "trait_type": "Familiar",
-        "value": "Void Fox"
+        "value": "Raven"
       },
       {
         "trait_type": "Aura",
-        "value": "Broken Hearts"
+        "value": "Glitch Particles"
       },
       {
         "trait_type": "Dark Humor Accessory",
-        "value": "Love Is Overrated Sign"
+        "value": "Toxic Love Bottle"
       },
       {
         "trait_type": "Material",
-        "value": "patched velvet"
+        "value": "dull silver"
       },
       {
         "trait_type": "Detail",
-        "value": "mischievous smirk"
+        "value": "tiny cracked heart pin"
+      },
+      {
+        "trait_type": "Background",
+        "value": "Apricot Glow"
       }
     ]
   }

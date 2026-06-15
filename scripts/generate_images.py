@@ -43,6 +43,32 @@ def prompt_sections(prompt_path: Path) -> tuple[str, str]:
     return positive, negative
 
 
+def attr_value(record: dict, trait_type: str) -> str | None:
+    for attr in record.get("attributes", []):
+        if attr.get("trait_type") == trait_type:
+            return attr.get("value")
+    return None
+
+
+def load_background_style(name: str | None) -> dict | None:
+    if not name:
+        return None
+    config_path = PROJECT_ROOT / "config" / "backgrounds.yaml"
+    if not config_path.exists():
+        return None
+    data = load_yaml(config_path)
+    for styles in data["backgrounds"].values():
+        for style in styles:
+            if style["name"] == name:
+                return style
+    return None
+
+
+def hex_to_rgba(value: str) -> tuple[int, int, int, int]:
+    value = value.lstrip("#")
+    return (int(value[0:2], 16), int(value[2:4], 16), int(value[4:6], 16), 255)
+
+
 def draw_heart(draw: ImageDraw.ImageDraw, cx: int, cy: int, r: int, fill: tuple, outline: tuple, width: int = 3) -> None:
     points = [
         (cx, cy + r),
@@ -58,6 +84,70 @@ def draw_heart(draw: ImageDraw.ImageDraw, cx: int, cy: int, r: int, fill: tuple,
 
 def draw_star(draw: ImageDraw.ImageDraw, cx: int, cy: int, r: int, fill: tuple) -> None:
     draw.polygon([(cx, cy - r), (cx + r // 4, cy - r // 4), (cx + r, cy), (cx + r // 4, cy + r // 4), (cx, cy + r), (cx - r // 4, cy + r // 4), (cx - r, cy), (cx - r // 4, cy - r // 4)], fill=fill)
+
+
+def lerp_color(a: tuple[int, int, int, int], b: tuple[int, int, int, int], t: float) -> tuple[int, int, int, int]:
+    return tuple(int(a[i] + (b[i] - a[i]) * t) for i in range(4))
+
+
+def draw_background(style: dict, size: int) -> Image.Image:
+    colors = [hex_to_rgba(color) for color in style["colors"]]
+    pattern = style["pattern"]
+    image = Image.new("RGBA", (size, size), colors[0])
+    draw = ImageDraw.Draw(image, "RGBA")
+
+    if pattern in {"soft_gradient", "flat_dither", "pixel_mist", "wave_dither"}:
+        for y in range(size):
+            t = y / max(1, size - 1)
+            draw.line((0, y, size, y), fill=lerp_color(colors[0], colors[min(1, len(colors) - 1)], t))
+    elif pattern in {"radial_glow", "halo", "eclipse", "legendary_aura"}:
+        center = (size // 2, int(size * 0.46))
+        for radius in range(size, 0, -8):
+            t = 1 - radius / size
+            index = min(int(t * len(colors)), len(colors) - 1)
+            fill = colors[index]
+            alpha = 210 if pattern != "eclipse" else 230
+            draw.ellipse(
+                (center[0] - radius, center[1] - radius, center[0] + radius, center[1] + radius),
+                fill=fill[:3] + (alpha,),
+            )
+    else:
+        image.paste(colors[0], (0, 0, size, size))
+
+    accent = colors[-1]
+    mid = colors[len(colors) // 2]
+    if pattern in {"pixel_sparks", "legendary_aura", "ornate_rays"}:
+        for i in range(44):
+            x = (i * 97 + size // 7) % size
+            y = (i * 53 + size // 5) % size
+            r = max(2, size // (96 + (i % 4) * 16))
+            draw_star(draw, x, y, r, accent[:3] + (120,))
+    if pattern in {"flat_dither", "pixel_mist", "wave_dither", "rose_pixels", "ornate_rays", "legendary_aura"}:
+        step = max(8, size // 48)
+        for y in range(0, size, step):
+            for x in range((y // step) % 2 * step, size, step * 2):
+                alpha = 34 if pattern != "rose_pixels" else 58
+                draw.rectangle((x, y, x + step // 2, y + step // 2), fill=mid[:3] + (alpha,))
+    if pattern in {"halo", "ornate_rays", "legendary_aura"}:
+        cx, cy = size // 2, int(size * 0.48)
+        for i in range(18):
+            angle = i / 18
+            x = int(cx + (size * 0.62) * __import__("math").cos(angle * 6.28318))
+            y = int(cy + (size * 0.62) * __import__("math").sin(angle * 6.28318))
+            draw.line((cx, cy, x, y), fill=accent[:3] + (24,), width=max(1, size // 192))
+
+    return image.filter(ImageFilter.GaussianBlur(0.4))
+
+
+def apply_background(path: Path, record: dict) -> None:
+    style = load_background_style(attr_value(record, "Background"))
+    if not style:
+        return
+    character = Image.open(path).convert("RGBA")
+    background = draw_background(style, character.width)
+    background.alpha_composite(character)
+    background.putalpha(255)
+    background.save(path)
 
 
 def draw_placeholder(path: Path, record: dict, size: int) -> None:
@@ -312,6 +402,7 @@ def generate(
         positive, negative = prompt_sections(prompt_path)
         if mode == "placeholder":
             draw_placeholder(image_path, record, size)
+            apply_background(image_path, record)
             pixelate_image(image_path, pixel_size, palette_colors)
         elif mode == "comfyui":
             output_prefix = f"love_antilove/{edition:03d}"
@@ -325,6 +416,7 @@ def generate(
                 reference_image,
             )
             fetch_comfy_result(prompt_id, image_path, edition)
+            apply_background(image_path, record)
             pixelate_image(image_path, pixel_size, palette_colors)
             print(f"Saved ComfyUI result for {edition:03d} to {image_path}")
             time.sleep(0.15)

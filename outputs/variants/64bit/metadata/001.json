@@ -11,31 +11,35 @@
     },
     {
       "trait_type": "Hat",
-      "value": "Winged Heart Hat"
+      "value": "Rose Halo Hat"
     },
     {
       "trait_type": "Robe",
-      "value": "Pink Gold Robe"
+      "value": "Celestial Love Robe"
     },
     {
       "trait_type": "Staff",
-      "value": "Rose Staff"
+      "value": "Crystal Heart Staff"
     },
     {
       "trait_type": "Familiar",
-      "value": "Bunny"
+      "value": "Fox"
     },
     {
       "trait_type": "Aura",
-      "value": "Rainbow Heart Glow"
+      "value": "Floating Hearts"
     },
     {
       "trait_type": "Material",
-      "value": "soft cotton"
+      "value": "polished wood"
     },
     {
       "trait_type": "Detail",
       "value": "gentle smile"
+    },
+    {
+      "trait_type": "Background",
+      "value": "Sunset Flat"
     }
   ],
   "collection": "LOVE // ANTILOVE",

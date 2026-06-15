@@ -1,7 +1,7 @@
 POSITIVE:
 64-bit high-detail pixel art, late retro RPG character sprite, subtle visible pixel clusters, large controlled color palette, crisp outline, refined shading and ornate readable accessories, premium high-resolution retro fantasy collectible aesthetic. retro pixel art fantasy wizard sprite, premium 32-bit RPG character, single wizard only, full body, centered, pure white empty background for easy cutout, crisp pixel clusters, visible square pixels, limited palette, clean 1 pixel dark outline, no anti-aliased painterly edges, chibi proportions, ornate but readable sprite details. Mandatory composition: oversized decorated wizard hat with dangling heart charms, large expressive pixel eyes, layered pink white lavender robe with gold trim, tiny boots, jeweled heart brooches, massive winged heart-shaped staff almost as tall as the character held on the left side, one cute pixel cat or bird familiar near the feet, floating heart charms, soft pixel sparkles, rose petals, pastel white pink lavender and warm gold palette, hopeful sweet expression, collectible retro game sprite, clean silhouette, no scenery, no words, no letters, no readable signs, no logo, no UI, no border.
 
-Trait match: Hat: Starheart Cap, Robe: Celestial Love Robe, Staff: Cupid Wand, Familiar: Heart Cat, Aura: Floating Hearts, Material: polished wood, Detail: tiny heart charm
+Trait match: Hat: Rose Halo Hat, Robe: Celestial Love Robe, Staff: Rose Staff, Familiar: Baby Dragon, Aura: Rainbow Heart Glow, Material: polished wood, Detail: tiny heart charm, Background: Sunset Flat
 Rarity direction: simple readable pixel details, clean silhouette
 
 NEGATIVE:

@@ -23,23 +23,27 @@
     },
     {
       "trait_type": "Familiar",
-      "value": "Void Fox"
+      "value": "Raven"
     },
     {
       "trait_type": "Aura",
-      "value": "Broken Hearts"
+      "value": "Glitch Particles"
     },
     {
       "trait_type": "Dark Humor Accessory",
-      "value": "Love Is Overrated Sign"
+      "value": "Toxic Love Bottle"
     },
     {
       "trait_type": "Material",
-      "value": "patched velvet"
+      "value": "dull silver"
     },
     {
       "trait_type": "Detail",
-      "value": "mischievous smirk"
+      "value": "tiny cracked heart pin"
+    },
+    {
+      "trait_type": "Background",
+      "value": "Apricot Glow"
     }
   ],
   "collection": "LOVE // ANTILOVE",

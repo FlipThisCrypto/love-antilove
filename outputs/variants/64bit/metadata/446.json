@@ -11,11 +11,11 @@
     },
     {
       "trait_type": "Hat",
-      "value": "Spiked Heart Hat"
+      "value": "Black Rose Hat"
     },
     {
       "trait_type": "Robe",
-      "value": "Gothic Heart Robe"
+      "value": "Void Love Robe"
     },
     {
       "trait_type": "Staff",
@@ -23,23 +23,27 @@
     },
     {
       "trait_type": "Familiar",
-      "value": "Raven"
+      "value": "Shadow Cat"
     },
     {
       "trait_type": "Aura",
-      "value": "Black Roses"
+      "value": "Broken Hearts"
     },
     {
       "trait_type": "Dark Humor Accessory",
-      "value": "Regret Potion"
+      "value": "Love Is Overrated Sign"
     },
     {
       "trait_type": "Material",
-      "value": "dull silver"
+      "value": "dark oak"
     },
     {
       "trait_type": "Detail",
       "value": "tiny cracked heart pin"
+    },
+    {
+      "trait_type": "Background",
+      "value": "Sunset Flat"
     }
   ],
   "collection": "LOVE // ANTILOVE",

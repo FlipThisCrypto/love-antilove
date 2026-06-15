@@ -1,0 +1,49 @@
+backgrounds:
+  common:
+    - name: Amber Wash
+      colors: ["#F6B15A", "#FFE0A3"]
+      pattern: soft_gradient
+    - name: Apricot Glow
+      colors: ["#FBC07A", "#FFF0C8"]
+      pattern: radial_glow
+    - name: Peach Pixel Mist
+      colors: ["#F7A66A", "#FFD1A8"]
+      pattern: pixel_mist
+    - name: Sunset Flat
+      colors: ["#F18B45", "#FDB76F"]
+      pattern: flat_dither
+  uncommon:
+    - name: Blood Orange Bloom
+      colors: ["#C8421B", "#F47A2D", "#FFD089"]
+      pattern: radial_glow
+    - name: Tangerine Sparks
+      colors: ["#E96B22", "#FFB84E", "#FFE1A6"]
+      pattern: pixel_sparks
+    - name: Coral Heatwave
+      colors: ["#E85C48", "#FF9A5A", "#FFD6A5"]
+      pattern: wave_dither
+  rare:
+    - name: Ember Halo
+      colors: ["#8F1F14", "#E45B24", "#FFC15F"]
+      pattern: halo
+    - name: Molten Rose
+      colors: ["#742015", "#C5342D", "#FF8A4C", "#FFD39A"]
+      pattern: rose_pixels
+    - name: Pumpkin Eclipse
+      colors: ["#3B1820", "#A83A1E", "#F28C28", "#FFD27A"]
+      pattern: eclipse
+  epic:
+    - name: Infernal Gold
+      colors: ["#2D1014", "#9D2B17", "#F06A22", "#FFC857", "#FFF0B7"]
+      pattern: ornate_rays
+  legendary:
+    - name: Solar Blood Moon
+      colors: ["#18080C", "#661111", "#C02A16", "#FF7A1C", "#FFD86A", "#FFF5BD"]
+      pattern: legendary_aura
+
+rarity_background_tiers:
+  Common: common
+  Uncommon: uncommon
+  Rare: rare
+  Epic: epic
+  Legendary: legendary

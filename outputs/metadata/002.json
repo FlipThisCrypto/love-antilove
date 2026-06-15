@@ -11,7 +11,7 @@
     },
     {
       "trait_type": "Hat",
-      "value": "Starheart Cap"
+      "value": "Rose Halo Hat"
     },
     {
       "trait_type": "Robe",
@@ -19,15 +19,15 @@
     },
     {
       "trait_type": "Staff",
-      "value": "Cupid Wand"
+      "value": "Rose Staff"
     },
     {
       "trait_type": "Familiar",
-      "value": "Heart Cat"
+      "value": "Baby Dragon"
     },
     {
       "trait_type": "Aura",
-      "value": "Floating Hearts"
+      "value": "Rainbow Heart Glow"
     },
     {
       "trait_type": "Material",
@@ -36,6 +36,10 @@
     {
       "trait_type": "Detail",
       "value": "tiny heart charm"
+    },
+    {
+      "trait_type": "Background",
+      "value": "Sunset Flat"
     }
   ],
   "collection": "LOVE // ANTILOVE",

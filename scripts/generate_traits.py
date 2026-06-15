@@ -29,6 +29,12 @@ def build_attributes(traits_config: dict, rarity: str, rng: random.Random) -> li
     return attributes
 
 
+def choose_background(rarity: str, rng: random.Random) -> str:
+    backgrounds = load_yaml(PROJECT_ROOT / "config" / "backgrounds.yaml")
+    tier = backgrounds["rarity_background_tiers"][rarity]
+    return rng.choice(backgrounds["backgrounds"][tier])["name"]
+
+
 def generate(love_count: int, antilove_count: int, seed: int, resume: bool) -> list[dict]:
     ensure_output_dirs()
     traits_path = output_path("reports", "traits.json")
@@ -57,7 +63,8 @@ def generate(love_count: int, antilove_count: int, seed: int, resume: bool) -> l
                 "name": name_for_edition(edition),
                 "alignment": alignment,
                 "rarity": rarity,
-                "attributes": build_attributes(config, rarity, rng),
+                "attributes": build_attributes(config, rarity, rng)
+                + [{"trait_type": "Background", "value": choose_background(rarity, rng)}],
             }
         )
 

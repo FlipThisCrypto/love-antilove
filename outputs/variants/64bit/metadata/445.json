@@ -11,15 +11,15 @@
     },
     {
       "trait_type": "Hat",
-      "value": "Spiked Heart Hat"
+      "value": "Thorn Witch Hat"
     },
     {
       "trait_type": "Robe",
-      "value": "Crimson Grief Robe"
+      "value": "Torn Shadow Robe"
     },
     {
       "trait_type": "Staff",
-      "value": "Shadow Rose Staff"
+      "value": "Broken Heart Staff"
     },
     {
       "trait_type": "Familiar",
@@ -27,19 +27,23 @@
     },
     {
       "trait_type": "Aura",
-      "value": "Black Roses"
+      "value": "Shadow Flames"
     },
     {
       "trait_type": "Dark Humor Accessory",
-      "value": "Love Is Overrated Sign"
+      "value": "Regret Potion"
     },
     {
       "trait_type": "Material",
-      "value": "dark oak"
+      "value": "dull silver"
     },
     {
       "trait_type": "Detail",
       "value": "mischievous smirk"
+    },
+    {
+      "trait_type": "Background",
+      "value": "Amber Wash"
     }
   ],
   "collection": "LOVE // ANTILOVE",
