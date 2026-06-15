@@ -5,6 +5,7 @@ import argparse
 import json
 import time
 from pathlib import Path
+from urllib.parse import urlencode
 
 import requests
 from PIL import Image, ImageDraw, ImageFilter
@@ -140,7 +141,7 @@ def draw_placeholder(path: Path, record: dict, size: int) -> None:
     img.save(path)
 
 
-def queue_comfy(prompt: str, negative: str, seed: int, output_prefix: str, size: int) -> None:
+def queue_comfy(prompt: str, negative: str, seed: int, output_prefix: str, size: int) -> str:
     config = load_yaml(PROJECT_ROOT / "config" / "collection.yaml")
     workflow_path = PROJECT_ROOT / config["generation"]["comfyui_workflow"]
     workflow = json.loads(workflow_path.read_text(encoding="utf-8"))["api_workflow"]
@@ -154,6 +155,35 @@ def queue_comfy(prompt: str, negative: str, seed: int, output_prefix: str, size:
     payload = {"prompt": json.loads(packed)}
     response = requests.post(f'{config["generation"]["comfyui_url"]}/prompt', json=payload, timeout=30)
     response.raise_for_status()
+    return response.json()["prompt_id"]
+
+
+def fetch_comfy_result(prompt_id: str, target_path: Path, timeout_seconds: int = 900) -> None:
+    config = load_yaml(PROJECT_ROOT / "config" / "collection.yaml")
+    base_url = config["generation"]["comfyui_url"]
+    deadline = time.time() + timeout_seconds
+    while time.time() < deadline:
+        history_response = requests.get(f"{base_url}/history/{prompt_id}", timeout=30)
+        history_response.raise_for_status()
+        history = history_response.json()
+        if prompt_id in history:
+            outputs = history[prompt_id].get("outputs", {})
+            for output in outputs.values():
+                for image in output.get("images", []):
+                    query = urlencode(
+                        {
+                            "filename": image["filename"],
+                            "subfolder": image.get("subfolder", ""),
+                            "type": image.get("type", "output"),
+                        }
+                    )
+                    image_response = requests.get(f"{base_url}/view?{query}", timeout=60)
+                    image_response.raise_for_status()
+                    target_path.parent.mkdir(parents=True, exist_ok=True)
+                    target_path.write_bytes(image_response.content)
+                    return
+        time.sleep(2)
+    raise TimeoutError(f"Timed out waiting for ComfyUI prompt {prompt_id}")
 
 
 def generate(mode: str, resume: bool) -> None:
@@ -173,8 +203,15 @@ def generate(mode: str, resume: bool) -> None:
             draw_placeholder(image_path, record, size)
         elif mode == "comfyui":
             output_prefix = f"love_antilove/{edition:03d}"
-            queue_comfy(positive, negative, edition + int(config["collection"]["seed"]), output_prefix, size)
-            print(f"Queued ComfyUI job for {edition:03d}. Copy final PNG into {image_path}")
+            prompt_id = queue_comfy(
+                positive,
+                negative,
+                edition + int(config["collection"]["seed"]),
+                output_prefix,
+                size,
+            )
+            fetch_comfy_result(prompt_id, image_path)
+            print(f"Saved ComfyUI result for {edition:03d} to {image_path}")
             time.sleep(0.15)
         else:
             raise ValueError(f"Unsupported mode: {mode}")

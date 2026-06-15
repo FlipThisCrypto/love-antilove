@@ -42,6 +42,20 @@ python scripts/rarity_report.py
 python scripts/validate_collection.py --expected 6
 ```
 
+Run the preview loop against `sample1` through `sample8`:
+
+```bash
+python scripts/preview_loop.py --iterations 1 --image-mode placeholder
+```
+
+On the ROCm/ComfyUI machine, run real image batches with:
+
+```bash
+python scripts/preview_loop.py --iterations 3 --image-mode comfyui
+```
+
+Each iteration creates a side-by-side reference/preview contact sheet in `outputs/reports/preview_loop/`. Review that sheet, tune the prompt templates or ComfyUI workflow, and rerun the loop until the batch matches the samples closely enough.
+
 Resume a failed or interrupted run:
 
 ```bash
