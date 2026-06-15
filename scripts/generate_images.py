@@ -205,6 +205,19 @@ def fetch_comfy_result(prompt_id: str, target_path: Path, timeout_seconds: int =
     raise TimeoutError(f"Timed out waiting for ComfyUI prompt {prompt_id}")
 
 
+def pixelate_image(path: Path, pixel_size: int) -> None:
+    if pixel_size <= 1:
+        return
+    image = Image.open(path).convert("RGBA")
+    small_size = (
+        max(1, image.width // pixel_size),
+        max(1, image.height // pixel_size),
+    )
+    small = image.resize(small_size, Image.Resampling.BILINEAR)
+    pixelated = small.resize(image.size, Image.Resampling.NEAREST)
+    pixelated.save(path)
+
+
 def remove_corner_background(path: Path, tolerance: int = 34) -> None:
     image = Image.open(path).convert("RGBA")
     width, height = image.size
@@ -254,7 +267,7 @@ def remove_corner_background(path: Path, tolerance: int = 34) -> None:
     image.save(path)
 
 
-def generate(mode: str, resume: bool, size_override: int | None = None) -> None:
+def generate(mode: str, resume: bool, size_override: int | None = None, pixel_size: int = 1) -> None:
     ensure_output_dirs()
     config = load_yaml(PROJECT_ROOT / "config" / "collection.yaml")
     size = size_override or int(config["generation"]["image_size"])
@@ -269,6 +282,7 @@ def generate(mode: str, resume: bool, size_override: int | None = None) -> None:
         positive, negative = prompt_sections(prompt_path)
         if mode == "placeholder":
             draw_placeholder(image_path, record, size)
+            pixelate_image(image_path, pixel_size)
         elif mode == "comfyui":
             output_prefix = f"love_antilove/{edition:03d}"
             reference_image = prepare_reference_image(record["alignment"], size)
@@ -281,6 +295,7 @@ def generate(mode: str, resume: bool, size_override: int | None = None) -> None:
                 reference_image,
             )
             fetch_comfy_result(prompt_id, image_path)
+            pixelate_image(image_path, pixel_size)
             print(f"Saved ComfyUI result for {edition:03d} to {image_path}")
             time.sleep(0.15)
         else:
@@ -293,8 +308,9 @@ def main() -> None:
     parser.add_argument("--mode", choices=["placeholder", "comfyui"], default="placeholder")
     parser.add_argument("--resume", action="store_true", help="Skip images that already exist.")
     parser.add_argument("--size", type=int, default=None, help="Override square image size for this run.")
+    parser.add_argument("--pixel-size", type=int, default=1, help="Postprocess pixel block size. Use 1 to disable.")
     args = parser.parse_args()
-    generate(args.mode, args.resume, args.size)
+    generate(args.mode, args.resume, args.size, args.pixel_size)
 
 
 if __name__ == "__main__":

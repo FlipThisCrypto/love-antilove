@@ -63,6 +63,14 @@ powershell -ExecutionPolicy Bypass -File scripts/start_comfyui_directml_rx6800.p
 python scripts/preview_loop.py --iterations 1 --love 3 --antilove 3 --image-mode comfyui --size 768
 ```
 
+Retro pixel preview:
+
+```powershell
+python scripts/preview_loop.py --iterations 1 --love 3 --antilove 3 --image-mode comfyui --size 768 --pixel-size 8
+```
+
+Use `--pixel-size 4`, `6`, or `8` to control how chunky the final pixel treatment feels.
+
 The current local Windows workflow uses ComfyUI installed beside this repo at `../ComfyUI`, with DirectML device index `1`, which maps to the AMD Radeon RX 6800 on this machine. The workflow expects these local ComfyUI model files:
 
 - `../ComfyUI/models/checkpoints/DreamShaperXL_Lightning.safetensors`

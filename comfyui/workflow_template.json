@@ -14,7 +14,7 @@
         "cfg": 3.0,
         "sampler_name": "euler",
         "scheduler": "sgm_uniform",
-        "denoise": 0.72,
+        "denoise": 0.64,
         "model": ["11", 0],
         "positive": ["6", 0],
         "negative": ["7", 0],

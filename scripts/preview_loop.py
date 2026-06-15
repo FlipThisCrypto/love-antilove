@@ -102,6 +102,8 @@ def run_iteration(iteration: int, args: argparse.Namespace) -> Path:
     image_command = [sys.executable, "scripts/generate_images.py", "--mode", args.image_mode]
     if args.size is not None:
         image_command.extend(["--size", str(args.size)])
+    if args.pixel_size is not None:
+        image_command.extend(["--pixel-size", str(args.pixel_size)])
     run_step(image_command)
     run_step([sys.executable, "scripts/create_metadata.py"])
     run_step([sys.executable, "scripts/rarity_report.py"])
@@ -126,6 +128,7 @@ def main() -> None:
     parser.add_argument("--seed", type=int, default=888, help="Base seed. Each iteration increments it by 1.")
     parser.add_argument("--image-mode", choices=["placeholder", "comfyui"], default="placeholder")
     parser.add_argument("--size", type=int, default=None, help="Override square image size for this run.")
+    parser.add_argument("--pixel-size", type=int, default=None, help="Postprocess pixel block size.")
     parser.add_argument(
         "--reference-dir",
         type=Path,
