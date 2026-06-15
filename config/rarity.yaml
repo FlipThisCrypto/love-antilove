@@ -1,0 +1,20 @@
+rarity_counts:
+  LOVE:
+    Common: 300
+    Uncommon: 100
+    Rare: 35
+    Epic: 8
+    Legendary: 1
+  ANTILOVE:
+    Common: 300
+    Uncommon: 100
+    Rare: 35
+    Epic: 8
+    Legendary: 1
+
+rarity_order:
+  - Common
+  - Uncommon
+  - Rare
+  - Epic
+  - Legendary

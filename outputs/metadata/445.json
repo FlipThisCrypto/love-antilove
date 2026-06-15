@@ -1,0 +1,47 @@
+{
+  "name": "ANTILOVE Wizard #445",
+  "description": "A premium pixel wizard from the ANTILOVE side of the LOVE // ANTILOVE collection.",
+  "image": "ipfs://REPLACE_WITH_IMAGE_CID/445.png",
+  "edition": 445,
+  "alignment": "ANTILOVE",
+  "attributes": [
+    {
+      "trait_type": "Rarity",
+      "value": "Common"
+    },
+    {
+      "trait_type": "Hat",
+      "value": "Black Rose Hat"
+    },
+    {
+      "trait_type": "Robe",
+      "value": "Crimson Grief Robe"
+    },
+    {
+      "trait_type": "Staff",
+      "value": "Shadow Rose Staff"
+    },
+    {
+      "trait_type": "Familiar",
+      "value": "Raven"
+    },
+    {
+      "trait_type": "Aura",
+      "value": "Black Roses"
+    },
+    {
+      "trait_type": "Dark Humor Accessory",
+      "value": "Toxic Love Bottle"
+    },
+    {
+      "trait_type": "Material",
+      "value": "patched velvet"
+    },
+    {
+      "trait_type": "Detail",
+      "value": "mischievous smirk"
+    }
+  ],
+  "collection": "LOVE // ANTILOVE",
+  "rewards note": "Holder rewards and project utilities are subject to official LOVE // ANTILOVE announcements."
+}

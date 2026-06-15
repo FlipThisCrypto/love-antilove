@@ -1,0 +1,8 @@
+POSITIVE:
+Premium pixel art fantasy wizard, chibi gothic RPG sprite, full body, centered, transparent background, broken heart magic, dark robes, crimson and purple accents, thorn staff, mischievous expression, dark humor accessories, black cat or bat familiar, cracked heart aura, playful spooky tone, clean sharp pixel edges, collectible NFT character, no text, no UI, no border.
+
+Trait match: Hat: Broken Halo Hat, Robe: Gothic Heart Robe, Staff: Broken Heart Staff, Familiar: Shadow Cat, Aura: Void Smoke, Dark Humor Accessory: Tiny Voodoo Doll, Material: dull silver, Detail: tiny cracked heart pin
+Rarity direction: simple readable pixel details, clean silhouette
+
+NEGATIVE:
+text, words, letters, logo, watermark, signature, frame, trading card, UI panel, blurry, low quality, realistic photo, 3d render, painterly, extra limbs, bad hands, cropped body, duplicate character, gore, explicit violence, nudity.

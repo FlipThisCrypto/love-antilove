@@ -1,0 +1,45 @@
+alignment: LOVE
+traits:
+  Hat:
+    - Rose Halo Hat
+    - Winged Heart Hat
+    - Starheart Cap
+    - Bloom Crown
+  Robe:
+    - White Rose Robe
+    - Pink Gold Robe
+    - Lavender Light Robe
+    - Celestial Love Robe
+  Staff:
+    - Heart Staff
+    - Rose Staff
+    - Cupid Wand
+    - Crystal Heart Staff
+  Familiar:
+    - Heart Cat
+    - Lovebird
+    - Baby Dragon
+    - Bunny
+    - Fox
+  Aura:
+    - Floating Hearts
+    - Rose Petals
+    - Golden Sparkles
+    - Rainbow Heart Glow
+
+rarity_boosts:
+  Common:
+    materials: ["soft cotton", "polished wood", "warm gold"]
+    details: ["gentle smile", "tiny heart charm"]
+  Uncommon:
+    materials: ["silk", "rose quartz", "bright gold"]
+    details: ["glowing cheek stars", "petal trim"]
+  Rare:
+    materials: ["moon silk", "crystal rose", "radiant gold"]
+    details: ["heart constellation trim", "floating rose sigils"]
+  Epic:
+    materials: ["starlight silk", "angelic crystal", "liquid gold"]
+    details: ["winged heart crest", "halo spark trail"]
+  Legendary:
+    materials: ["celestial loveglass", "sunlit diamond", "mythic gold"]
+    details: ["sovereign heart aura", "radiant rose crown magic"]

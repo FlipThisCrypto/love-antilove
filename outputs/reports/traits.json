@@ -1,0 +1,254 @@
+[
+  {
+    "edition": 1,
+    "name": "LOVE Wizard #001",
+    "alignment": "LOVE",
+    "rarity": "Common",
+    "attributes": [
+      {
+        "trait_type": "Rarity",
+        "value": "Common"
+      },
+      {
+        "trait_type": "Hat",
+        "value": "Bloom Crown"
+      },
+      {
+        "trait_type": "Robe",
+        "value": "Celestial Love Robe"
+      },
+      {
+        "trait_type": "Staff",
+        "value": "Cupid Wand"
+      },
+      {
+        "trait_type": "Familiar",
+        "value": "Fox"
+      },
+      {
+        "trait_type": "Aura",
+        "value": "Rainbow Heart Glow"
+      },
+      {
+        "trait_type": "Material",
+        "value": "soft cotton"
+      },
+      {
+        "trait_type": "Detail",
+        "value": "tiny heart charm"
+      }
+    ]
+  },
+  {
+    "edition": 2,
+    "name": "LOVE Wizard #002",
+    "alignment": "LOVE",
+    "rarity": "Common",
+    "attributes": [
+      {
+        "trait_type": "Rarity",
+        "value": "Common"
+      },
+      {
+        "trait_type": "Hat",
+        "value": "Bloom Crown"
+      },
+      {
+        "trait_type": "Robe",
+        "value": "Celestial Love Robe"
+      },
+      {
+        "trait_type": "Staff",
+        "value": "Cupid Wand"
+      },
+      {
+        "trait_type": "Familiar",
+        "value": "Bunny"
+      },
+      {
+        "trait_type": "Aura",
+        "value": "Floating Hearts"
+      },
+      {
+        "trait_type": "Material",
+        "value": "warm gold"
+      },
+      {
+        "trait_type": "Detail",
+        "value": "tiny heart charm"
+      }
+    ]
+  },
+  {
+    "edition": 3,
+    "name": "LOVE Wizard #003",
+    "alignment": "LOVE",
+    "rarity": "Common",
+    "attributes": [
+      {
+        "trait_type": "Rarity",
+        "value": "Common"
+      },
+      {
+        "trait_type": "Hat",
+        "value": "Bloom Crown"
+      },
+      {
+        "trait_type": "Robe",
+        "value": "Pink Gold Robe"
+      },
+      {
+        "trait_type": "Staff",
+        "value": "Cupid Wand"
+      },
+      {
+        "trait_type": "Familiar",
+        "value": "Baby Dragon"
+      },
+      {
+        "trait_type": "Aura",
+        "value": "Rose Petals"
+      },
+      {
+        "trait_type": "Material",
+        "value": "soft cotton"
+      },
+      {
+        "trait_type": "Detail",
+        "value": "tiny heart charm"
+      }
+    ]
+  },
+  {
+    "edition": 445,
+    "name": "ANTILOVE Wizard #445",
+    "alignment": "ANTILOVE",
+    "rarity": "Common",
+    "attributes": [
+      {
+        "trait_type": "Rarity",
+        "value": "Common"
+      },
+      {
+        "trait_type": "Hat",
+        "value": "Black Rose Hat"
+      },
+      {
+        "trait_type": "Robe",
+        "value": "Crimson Grief Robe"
+      },
+      {
+        "trait_type": "Staff",
+        "value": "Shadow Rose Staff"
+      },
+      {
+        "trait_type": "Familiar",
+        "value": "Raven"
+      },
+      {
+        "trait_type": "Aura",
+        "value": "Black Roses"
+      },
+      {
+        "trait_type": "Dark Humor Accessory",
+        "value": "Toxic Love Bottle"
+      },
+      {
+        "trait_type": "Material",
+        "value": "patched velvet"
+      },
+      {
+        "trait_type": "Detail",
+        "value": "mischievous smirk"
+      }
+    ]
+  },
+  {
+    "edition": 446,
+    "name": "ANTILOVE Wizard #446",
+    "alignment": "ANTILOVE",
+    "rarity": "Common",
+    "attributes": [
+      {
+        "trait_type": "Rarity",
+        "value": "Common"
+      },
+      {
+        "trait_type": "Hat",
+        "value": "Broken Halo Hat"
+      },
+      {
+        "trait_type": "Robe",
+        "value": "Gothic Heart Robe"
+      },
+      {
+        "trait_type": "Staff",
+        "value": "Broken Heart Staff"
+      },
+      {
+        "trait_type": "Familiar",
+        "value": "Shadow Cat"
+      },
+      {
+        "trait_type": "Aura",
+        "value": "Void Smoke"
+      },
+      {
+        "trait_type": "Dark Humor Accessory",
+        "value": "Tiny Voodoo Doll"
+      },
+      {
+        "trait_type": "Material",
+        "value": "dull silver"
+      },
+      {
+        "trait_type": "Detail",
+        "value": "tiny cracked heart pin"
+      }
+    ]
+  },
+  {
+    "edition": 447,
+    "name": "ANTILOVE Wizard #447",
+    "alignment": "ANTILOVE",
+    "rarity": "Common",
+    "attributes": [
+      {
+        "trait_type": "Rarity",
+        "value": "Common"
+      },
+      {
+        "trait_type": "Hat",
+        "value": "Black Rose Hat"
+      },
+      {
+        "trait_type": "Robe",
+        "value": "Void Love Robe"
+      },
+      {
+        "trait_type": "Staff",
+        "value": "Thorn Staff"
+      },
+      {
+        "trait_type": "Familiar",
+        "value": "Shadow Cat"
+      },
+      {
+        "trait_type": "Aura",
+        "value": "Black Roses"
+      },
+      {
+        "trait_type": "Dark Humor Accessory",
+        "value": "Love Is Overrated Sign"
+      },
+      {
+        "trait_type": "Material",
+        "value": "dull silver"
+      },
+      {
+        "trait_type": "Detail",
+        "value": "tiny cracked heart pin"
+      }
+    ]
+  }
+]

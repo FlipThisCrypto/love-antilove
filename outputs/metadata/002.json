@@ -1,0 +1,43 @@
+{
+  "name": "LOVE Wizard #002",
+  "description": "A premium pixel wizard from the LOVE side of the LOVE // ANTILOVE collection.",
+  "image": "ipfs://REPLACE_WITH_IMAGE_CID/002.png",
+  "edition": 2,
+  "alignment": "LOVE",
+  "attributes": [
+    {
+      "trait_type": "Rarity",
+      "value": "Common"
+    },
+    {
+      "trait_type": "Hat",
+      "value": "Bloom Crown"
+    },
+    {
+      "trait_type": "Robe",
+      "value": "Celestial Love Robe"
+    },
+    {
+      "trait_type": "Staff",
+      "value": "Cupid Wand"
+    },
+    {
+      "trait_type": "Familiar",
+      "value": "Bunny"
+    },
+    {
+      "trait_type": "Aura",
+      "value": "Floating Hearts"
+    },
+    {
+      "trait_type": "Material",
+      "value": "warm gold"
+    },
+    {
+      "trait_type": "Detail",
+      "value": "tiny heart charm"
+    }
+  ],
+  "collection": "LOVE // ANTILOVE",
+  "rewards note": "Holder rewards and project utilities are subject to official LOVE // ANTILOVE announcements."
+}

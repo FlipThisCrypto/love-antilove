@@ -1,0 +1,23 @@
+collection:
+  name: LOVE // ANTILOVE
+  symbol: LOVEANTILOVE
+  total_supply: 888
+  love_start: 1
+  love_end: 444
+  antilove_start: 445
+  antilove_end: 888
+  description_love: "A premium pixel wizard from the LOVE side of the LOVE // ANTILOVE collection."
+  description_antilove: "A premium pixel wizard from the ANTILOVE side of the LOVE // ANTILOVE collection."
+  rewards_note: "Holder rewards and project utilities are subject to official LOVE // ANTILOVE announcements."
+  image_base_uri: "ipfs://REPLACE_WITH_IMAGE_CID"
+  metadata_base_uri: "ipfs://REPLACE_WITH_METADATA_CID"
+  image_extension: ".png"
+  seed: 888
+
+generation:
+  image_size: 1024
+  default_batch_size: 1
+  comfyui_url: "http://127.0.0.1:8188"
+  comfyui_workflow: "comfyui/workflow_template.json"
+  placeholder_background: "transparent"
+  output_root: "outputs"

@@ -1,0 +1,52 @@
+alignment: ANTILOVE
+traits:
+  Hat:
+    - Thorn Witch Hat
+    - Broken Halo Hat
+    - Black Rose Hat
+    - Spiked Heart Hat
+  Robe:
+    - Torn Shadow Robe
+    - Crimson Grief Robe
+    - Void Love Robe
+    - Gothic Heart Robe
+  Staff:
+    - Broken Heart Staff
+    - Thorn Staff
+    - Void Crystal Staff
+    - Shadow Rose Staff
+  Familiar:
+    - Shadow Cat
+    - Raven
+    - Bat
+    - Void Fox
+    - Dark Dragon
+  Aura:
+    - Broken Hearts
+    - Black Roses
+    - Glitch Particles
+    - Void Smoke
+    - Shadow Flames
+  Dark Humor Accessory:
+    - Regret Potion
+    - Emotional Damage Charm
+    - Love Is Overrated Sign
+    - Tiny Voodoo Doll
+    - Toxic Love Bottle
+
+rarity_boosts:
+  Common:
+    materials: ["patched velvet", "dull silver", "dark oak"]
+    details: ["mischievous smirk", "tiny cracked heart pin"]
+  Uncommon:
+    materials: ["gothic velvet", "black crystal", "crimson silver"]
+    details: ["thorn embroidery", "side-eye expression"]
+  Rare:
+    materials: ["void silk", "blood ruby", "blackened silver"]
+    details: ["cracked heart sigils", "sarcastic charm glow"]
+  Epic:
+    materials: ["shadow silk", "void crystal", "cursed silver"]
+    details: ["thorn halo sparks", "dramatic broken-heart aura"]
+  Legendary:
+    materials: ["midnight loveglass", "eclipse ruby", "mythic obsidian"]
+    details: ["sovereign shattered-heart aura", "cosmic gothic crown magic"]

@@ -1,0 +1,4 @@
+Premium pixel art fantasy wizard, chibi gothic RPG sprite, full body, centered, transparent background, broken heart magic, dark robes, crimson and purple accents, thorn staff, mischievous expression, dark humor accessories, black cat or bat familiar, cracked heart aura, playful spooky tone, clean sharp pixel edges, collectible NFT character, no text, no UI, no border.
+
+Trait match: {trait_sentence}
+Rarity direction: {rarity_sentence}

@@ -1,0 +1,8 @@
+POSITIVE:
+Premium pixel art fantasy wizard, chibi RPG sprite, full body, centered, transparent background, heart magic, white and pink robes, gold trim, glowing heart staff, cute magical familiar, soft sparkles, rose petals, hopeful expression, clean sharp pixel edges, collectible NFT character, no text, no UI, no border.
+
+Trait match: Hat: Bloom Crown, Robe: Pink Gold Robe, Staff: Cupid Wand, Familiar: Baby Dragon, Aura: Rose Petals, Material: soft cotton, Detail: tiny heart charm
+Rarity direction: simple readable pixel details, clean silhouette
+
+NEGATIVE:
+text, words, letters, logo, watermark, signature, frame, trading card, UI panel, blurry, low quality, realistic photo, 3d render, painterly, extra limbs, bad hands, cropped body, duplicate character, gore, explicit violence, nudity.
