@@ -99,7 +99,10 @@ def run_iteration(iteration: int, args: argparse.Namespace) -> Path:
         ]
     )
     run_step([sys.executable, "scripts/generate_prompts.py"])
-    run_step([sys.executable, "scripts/generate_images.py", "--mode", args.image_mode])
+    image_command = [sys.executable, "scripts/generate_images.py", "--mode", args.image_mode]
+    if args.size is not None:
+        image_command.extend(["--size", str(args.size)])
+    run_step(image_command)
     run_step([sys.executable, "scripts/create_metadata.py"])
     run_step([sys.executable, "scripts/rarity_report.py"])
     run_step(
@@ -122,6 +125,7 @@ def main() -> None:
     parser.add_argument("--antilove", type=int, default=3, help="ANTILOVE previews per iteration.")
     parser.add_argument("--seed", type=int, default=888, help="Base seed. Each iteration increments it by 1.")
     parser.add_argument("--image-mode", choices=["placeholder", "comfyui"], default="placeholder")
+    parser.add_argument("--size", type=int, default=None, help="Override square image size for this run.")
     parser.add_argument(
         "--reference-dir",
         type=Path,

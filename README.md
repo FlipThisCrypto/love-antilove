@@ -56,6 +56,21 @@ python scripts/preview_loop.py --iterations 3 --image-mode comfyui
 
 Each iteration creates a side-by-side reference/preview contact sheet in `outputs/reports/preview_loop/`. Review that sheet, tune the prompt templates or ComfyUI workflow, and rerun the loop until the batch matches the samples closely enough.
 
+Windows RX 6800 DirectML preview run:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/start_comfyui_directml_rx6800.ps1
+python scripts/preview_loop.py --iterations 1 --love 3 --antilove 3 --image-mode comfyui --size 768
+```
+
+The current local Windows workflow uses ComfyUI installed beside this repo at `../ComfyUI`, with DirectML device index `1`, which maps to the AMD Radeon RX 6800 on this machine. The workflow expects these local ComfyUI model files:
+
+- `../ComfyUI/models/checkpoints/DreamShaperXL_Lightning.safetensors`
+- `../ComfyUI/models/loras/extremely detailed.safetensors`
+- `../ComfyUI/models/loras/fantasy.safetensors`
+
+It also uses `sample2.png` and `sample4.png` from the workspace root as reference images for img2img style anchoring, then removes the edge-connected white/gray background to produce transparent PNG previews.
+
 Resume a failed or interrupted run:
 
 ```bash

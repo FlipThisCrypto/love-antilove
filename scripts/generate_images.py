@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+from collections import deque
 import json
 import time
 from pathlib import Path
@@ -141,7 +142,23 @@ def draw_placeholder(path: Path, record: dict, size: int) -> None:
     img.save(path)
 
 
-def queue_comfy(prompt: str, negative: str, seed: int, output_prefix: str, size: int) -> str:
+def prepare_reference_image(alignment: str, size: int) -> str:
+    source_name = "sample2.png" if alignment == "LOVE" else "sample4.png"
+    source = PROJECT_ROOT.parent / source_name
+    comfy_input = PROJECT_ROOT.parent / "ComfyUI" / "input"
+    comfy_input.mkdir(parents=True, exist_ok=True)
+    target_name = f"{alignment.lower()}_reference_{size}.png"
+    target = comfy_input / target_name
+    if not target.exists() or target.stat().st_mtime < source.stat().st_mtime:
+        image = Image.open(source).convert("RGBA")
+        image.thumbnail((size, size), Image.Resampling.LANCZOS)
+        canvas = Image.new("RGBA", (size, size), (255, 255, 255, 255))
+        canvas.alpha_composite(image, ((size - image.width) // 2, (size - image.height) // 2))
+        canvas.save(target)
+    return target_name
+
+
+def queue_comfy(prompt: str, negative: str, seed: int, output_prefix: str, size: int, reference_image: str) -> str:
     config = load_yaml(PROJECT_ROOT / "config" / "collection.yaml")
     workflow_path = PROJECT_ROOT / config["generation"]["comfyui_workflow"]
     workflow = json.loads(workflow_path.read_text(encoding="utf-8"))["api_workflow"]
@@ -152,6 +169,7 @@ def queue_comfy(prompt: str, negative: str, seed: int, output_prefix: str, size:
     packed = packed.replace('"WIDTH"', str(size))
     packed = packed.replace('"HEIGHT"', str(size))
     packed = packed.replace('"OUTPUT_PREFIX"', json.dumps(output_prefix))
+    packed = packed.replace('"REFERENCE_IMAGE"', json.dumps(reference_image))
     payload = {"prompt": json.loads(packed)}
     response = requests.post(f'{config["generation"]["comfyui_url"]}/prompt', json=payload, timeout=30)
     response.raise_for_status()
@@ -181,15 +199,65 @@ def fetch_comfy_result(prompt_id: str, target_path: Path, timeout_seconds: int =
                     image_response.raise_for_status()
                     target_path.parent.mkdir(parents=True, exist_ok=True)
                     target_path.write_bytes(image_response.content)
+                    remove_corner_background(target_path)
                     return
         time.sleep(2)
     raise TimeoutError(f"Timed out waiting for ComfyUI prompt {prompt_id}")
 
 
-def generate(mode: str, resume: bool) -> None:
+def remove_corner_background(path: Path, tolerance: int = 34) -> None:
+    image = Image.open(path).convert("RGBA")
+    width, height = image.size
+    pixels = image.load()
+    corners = [
+        pixels[0, 0],
+        pixels[width - 1, 0],
+        pixels[0, height - 1],
+        pixels[width - 1, height - 1],
+    ]
+    bg = tuple(sum(c[i] for c in corners) // len(corners) for i in range(3))
+    alpha = Image.new("L", image.size, 255)
+    alpha_pixels = alpha.load()
+    visited = set()
+    queue: deque[tuple[int, int]] = deque()
+    for x in range(width):
+        queue.append((x, 0))
+        queue.append((x, height - 1))
+    for y in range(height):
+        queue.append((0, y))
+        queue.append((width - 1, y))
+
+    def is_background(x: int, y: int) -> bool:
+        r, g, b, _ = pixels[x, y]
+        brightness = (r + g + b) / 3
+        saturation = max(r, g, b) - min(r, g, b)
+        distance = abs(r - bg[0]) + abs(g - bg[1]) + abs(b - bg[2])
+        return distance < tolerance * 3 or (brightness > 118 and saturation < 42)
+
+    while queue:
+        x, y = queue.popleft()
+        if (x, y) in visited or not (0 <= x < width and 0 <= y < height):
+            continue
+        visited.add((x, y))
+        if not is_background(x, y):
+            continue
+        alpha_pixels[x, y] = 0
+        queue.extend(((x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)))
+
+    for x, y in visited:
+        if alpha_pixels[x, y] == 0:
+            for nx in range(max(0, x - 1), min(width, x + 2)):
+                for ny in range(max(0, y - 1), min(height, y + 2)):
+                    if alpha_pixels[nx, ny] != 0 and is_background(nx, ny):
+                        alpha_pixels[nx, ny] = 96
+    image.putalpha(alpha.filter(ImageFilter.GaussianBlur(0.6)))
+    image.save(path)
+
+
+def generate(mode: str, resume: bool, size_override: int | None = None) -> None:
     ensure_output_dirs()
     config = load_yaml(PROJECT_ROOT / "config" / "collection.yaml")
-    size = int(config["generation"]["image_size"])
+    size = size_override or int(config["generation"]["image_size"])
     traits = read_json(output_path("reports", "traits.json"))
 
     for record in tqdm(traits, desc="Images"):
@@ -203,12 +271,14 @@ def generate(mode: str, resume: bool) -> None:
             draw_placeholder(image_path, record, size)
         elif mode == "comfyui":
             output_prefix = f"love_antilove/{edition:03d}"
+            reference_image = prepare_reference_image(record["alignment"], size)
             prompt_id = queue_comfy(
                 positive,
                 negative,
                 edition + int(config["collection"]["seed"]),
                 output_prefix,
                 size,
+                reference_image,
             )
             fetch_comfy_result(prompt_id, image_path)
             print(f"Saved ComfyUI result for {edition:03d} to {image_path}")
@@ -222,8 +292,9 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Generate or queue NFT images.")
     parser.add_argument("--mode", choices=["placeholder", "comfyui"], default="placeholder")
     parser.add_argument("--resume", action="store_true", help="Skip images that already exist.")
+    parser.add_argument("--size", type=int, default=None, help="Override square image size for this run.")
     args = parser.parse_args()
-    generate(args.mode, args.resume)
+    generate(args.mode, args.resume, args.size)
 
 
 if __name__ == "__main__":

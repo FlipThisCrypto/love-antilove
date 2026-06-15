@@ -9,63 +9,65 @@
 
 ## Trait Counts
 ### ANTILOVE - Aura
-- Black Roses: 2
-- Void Smoke: 1
+- Glitch Particles: 1
+- Black Roses: 1
+- Shadow Flames: 1
 
 ### ANTILOVE - Dark Humor Accessory
-- Toxic Love Bottle: 1
+- Love Is Overrated Sign: 2
 - Tiny Voodoo Doll: 1
-- Love Is Overrated Sign: 1
 
 ### ANTILOVE - Detail
 - tiny cracked heart pin: 2
 - mischievous smirk: 1
 
 ### ANTILOVE - Familiar
-- Shadow Cat: 2
 - Raven: 1
+- Bat: 1
+- Shadow Cat: 1
 
 ### ANTILOVE - Hat
-- Black Rose Hat: 2
 - Broken Halo Hat: 1
+- Thorn Witch Hat: 1
+- Black Rose Hat: 1
 
 ### ANTILOVE - Material
-- dull silver: 2
-- patched velvet: 1
+- patched velvet: 3
 
 ### ANTILOVE - Robe
-- Crimson Grief Robe: 1
+- Void Love Robe: 2
 - Gothic Heart Robe: 1
-- Void Love Robe: 1
 
 ### ANTILOVE - Staff
 - Shadow Rose Staff: 1
 - Broken Heart Staff: 1
-- Thorn Staff: 1
+- Void Crystal Staff: 1
 
 ### LOVE - Aura
-- Rainbow Heart Glow: 1
-- Floating Hearts: 1
 - Rose Petals: 1
+- Rainbow Heart Glow: 1
+- Golden Sparkles: 1
 
 ### LOVE - Detail
-- tiny heart charm: 3
+- tiny heart charm: 2
+- gentle smile: 1
 
 ### LOVE - Familiar
-- Fox: 1
-- Bunny: 1
-- Baby Dragon: 1
+- Fox: 2
+- Lovebird: 1
 
 ### LOVE - Hat
-- Bloom Crown: 3
+- Bloom Crown: 1
+- Rose Halo Hat: 1
+- Starheart Cap: 1
 
 ### LOVE - Material
-- soft cotton: 2
-- warm gold: 1
+- polished wood: 3
 
 ### LOVE - Robe
-- Celestial Love Robe: 2
-- Pink Gold Robe: 1
+- White Rose Robe: 2
+- Lavender Light Robe: 1
 
 ### LOVE - Staff
-- Cupid Wand: 3
+- Crystal Heart Staff: 2
+- Rose Staff: 1
