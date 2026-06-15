@@ -98,12 +98,17 @@ def run_iteration(iteration: int, args: argparse.Namespace) -> Path:
             str(seed),
         ]
     )
-    run_step([sys.executable, "scripts/generate_prompts.py"])
+    prompt_command = [sys.executable, "scripts/generate_prompts.py"]
+    if args.style_preset is not None:
+        prompt_command.extend(["--style-preset", args.style_preset])
+    run_step(prompt_command)
     image_command = [sys.executable, "scripts/generate_images.py", "--mode", args.image_mode]
     if args.size is not None:
         image_command.extend(["--size", str(args.size)])
     if args.pixel_size is not None:
         image_command.extend(["--pixel-size", str(args.pixel_size)])
+    if args.palette_colors is not None:
+        image_command.extend(["--palette-colors", str(args.palette_colors)])
     run_step(image_command)
     run_step([sys.executable, "scripts/create_metadata.py"])
     run_step([sys.executable, "scripts/rarity_report.py"])
@@ -127,8 +132,10 @@ def main() -> None:
     parser.add_argument("--antilove", type=int, default=3, help="ANTILOVE previews per iteration.")
     parser.add_argument("--seed", type=int, default=888, help="Base seed. Each iteration increments it by 1.")
     parser.add_argument("--image-mode", choices=["placeholder", "comfyui"], default="placeholder")
+    parser.add_argument("--style-preset", choices=["default", "8bit", "16bit", "32bit"], default=None)
     parser.add_argument("--size", type=int, default=None, help="Override square image size for this run.")
     parser.add_argument("--pixel-size", type=int, default=None, help="Postprocess pixel block size.")
+    parser.add_argument("--palette-colors", type=int, default=None, help="Quantize final image to this many colors.")
     parser.add_argument(
         "--reference-dir",
         type=Path,

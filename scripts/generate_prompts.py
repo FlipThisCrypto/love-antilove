@@ -6,6 +6,26 @@ import argparse
 from common import PROJECT_ROOT, ensure_output_dirs, output_path, read_json, read_text
 
 
+STYLE_PRESETS = {
+    "default": "",
+    "8bit": (
+        "8-bit retro pixel art, NES and Game Boy Color inspired sprite, chunky visible pixels, "
+        "very limited color palette, tile-like shading, strong black outline, simplified readable shapes, "
+        "low-resolution fantasy RPG character aesthetic. "
+    ),
+    "16bit": (
+        "16-bit retro pixel art, Super Nintendo and Sega Genesis inspired RPG sprite, visible pixels, "
+        "limited but richer color palette, crisp dithering, clean outline, readable chibi fantasy details, "
+        "classic JRPG character aesthetic. "
+    ),
+    "32bit": (
+        "32-bit retro pixel art, PlayStation and Game Boy Advance era RPG sprite, visible pixel clusters, "
+        "rich but controlled palette, crisp outline, more detailed shading and ornamentation, "
+        "premium collectible retro fantasy character aesthetic. "
+    ),
+}
+
+
 def trait_sentence(record: dict) -> str:
     pieces = []
     for attr in record["attributes"]:
@@ -27,7 +47,7 @@ def rarity_sentence(record: dict) -> str:
     return "mythic centerpiece quality, unique aura, strongest collectible presence"
 
 
-def generate(resume: bool) -> None:
+def generate(resume: bool, style_preset: str) -> None:
     ensure_output_dirs()
     traits = read_json(output_path("reports", "traits.json"))
     love_template = read_text(PROJECT_ROOT / "prompts" / "love_prompt_template.txt")
@@ -43,6 +63,9 @@ def generate(resume: bool) -> None:
             trait_sentence=trait_sentence(record),
             rarity_sentence=rarity_sentence(record),
         )
+        prefix = STYLE_PRESETS[style_preset]
+        if prefix:
+            positive = prefix + positive
         prompt_path.write_text(
             f"POSITIVE:\n{positive}\n\nNEGATIVE:\n{negative}\n",
             encoding="utf-8",
@@ -53,8 +76,9 @@ def generate(resume: bool) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser(description="Generate image prompts from metadata traits.")
     parser.add_argument("--resume", action="store_true", help="Skip prompt files that already exist.")
+    parser.add_argument("--style-preset", choices=sorted(STYLE_PRESETS), default="default")
     args = parser.parse_args()
-    generate(args.resume)
+    generate(args.resume, args.style_preset)
 
 
 if __name__ == "__main__":

@@ -1,0 +1,43 @@
+{
+  "name": "LOVE Wizard #003",
+  "description": "A premium pixel wizard from the LOVE side of the LOVE // ANTILOVE collection.",
+  "image": "ipfs://REPLACE_WITH_IMAGE_CID/003.png",
+  "edition": 3,
+  "alignment": "LOVE",
+  "attributes": [
+    {
+      "trait_type": "Rarity",
+      "value": "Common"
+    },
+    {
+      "trait_type": "Hat",
+      "value": "Starheart Cap"
+    },
+    {
+      "trait_type": "Robe",
+      "value": "White Rose Robe"
+    },
+    {
+      "trait_type": "Staff",
+      "value": "Rose Staff"
+    },
+    {
+      "trait_type": "Familiar",
+      "value": "Heart Cat"
+    },
+    {
+      "trait_type": "Aura",
+      "value": "Rainbow Heart Glow"
+    },
+    {
+      "trait_type": "Material",
+      "value": "soft cotton"
+    },
+    {
+      "trait_type": "Detail",
+      "value": "gentle smile"
+    }
+  ],
+  "collection": "LOVE // ANTILOVE",
+  "rewards note": "Holder rewards and project utilities are subject to official LOVE // ANTILOVE announcements."
+}

@@ -1,0 +1,47 @@
+{
+  "name": "ANTILOVE Wizard #447",
+  "description": "A premium pixel wizard from the ANTILOVE side of the LOVE // ANTILOVE collection.",
+  "image": "ipfs://REPLACE_WITH_IMAGE_CID/447.png",
+  "edition": 447,
+  "alignment": "ANTILOVE",
+  "attributes": [
+    {
+      "trait_type": "Rarity",
+      "value": "Common"
+    },
+    {
+      "trait_type": "Hat",
+      "value": "Spiked Heart Hat"
+    },
+    {
+      "trait_type": "Robe",
+      "value": "Void Love Robe"
+    },
+    {
+      "trait_type": "Staff",
+      "value": "Void Crystal Staff"
+    },
+    {
+      "trait_type": "Familiar",
+      "value": "Void Fox"
+    },
+    {
+      "trait_type": "Aura",
+      "value": "Broken Hearts"
+    },
+    {
+      "trait_type": "Dark Humor Accessory",
+      "value": "Love Is Overrated Sign"
+    },
+    {
+      "trait_type": "Material",
+      "value": "dull silver"
+    },
+    {
+      "trait_type": "Detail",
+      "value": "tiny cracked heart pin"
+    }
+  ],
+  "collection": "LOVE // ANTILOVE",
+  "rewards note": "Holder rewards and project utilities are subject to official LOVE // ANTILOVE announcements."
+}

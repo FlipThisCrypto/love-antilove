@@ -1,0 +1,47 @@
+{
+  "name": "ANTILOVE Wizard #446",
+  "description": "A premium pixel wizard from the ANTILOVE side of the LOVE // ANTILOVE collection.",
+  "image": "ipfs://REPLACE_WITH_IMAGE_CID/446.png",
+  "edition": 446,
+  "alignment": "ANTILOVE",
+  "attributes": [
+    {
+      "trait_type": "Rarity",
+      "value": "Common"
+    },
+    {
+      "trait_type": "Hat",
+      "value": "Spiked Heart Hat"
+    },
+    {
+      "trait_type": "Robe",
+      "value": "Torn Shadow Robe"
+    },
+    {
+      "trait_type": "Staff",
+      "value": "Void Crystal Staff"
+    },
+    {
+      "trait_type": "Familiar",
+      "value": "Void Fox"
+    },
+    {
+      "trait_type": "Aura",
+      "value": "Void Smoke"
+    },
+    {
+      "trait_type": "Dark Humor Accessory",
+      "value": "Regret Potion"
+    },
+    {
+      "trait_type": "Material",
+      "value": "dull silver"
+    },
+    {
+      "trait_type": "Detail",
+      "value": "mischievous smirk"
+    }
+  ],
+  "collection": "LOVE // ANTILOVE",
+  "rewards note": "Holder rewards and project utilities are subject to official LOVE // ANTILOVE announcements."
+}

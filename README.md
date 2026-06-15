@@ -71,6 +71,12 @@ python scripts/preview_loop.py --iterations 1 --love 3 --antilove 3 --image-mode
 
 Use `--pixel-size 4`, `6`, or `8` to control how chunky the final pixel treatment feels.
 
+Generate 512x512 8-bit, 16-bit, and 32-bit comparison variants:
+
+```powershell
+python scripts/generate_bit_variants.py --image-mode comfyui --size 512 --love 3 --antilove 3 --seed 900
+```
+
 The current local Windows workflow uses ComfyUI installed beside this repo at `../ComfyUI`, with DirectML device index `1`, which maps to the AMD Radeon RX 6800 on this machine. The workflow expects these local ComfyUI model files:
 
 - `../ComfyUI/models/checkpoints/DreamShaperXL_Lightning.safetensors`

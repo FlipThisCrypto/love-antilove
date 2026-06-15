@@ -1,0 +1,254 @@
+[
+  {
+    "edition": 1,
+    "name": "LOVE Wizard #001",
+    "alignment": "LOVE",
+    "rarity": "Common",
+    "attributes": [
+      {
+        "trait_type": "Rarity",
+        "value": "Common"
+      },
+      {
+        "trait_type": "Hat",
+        "value": "Rose Halo Hat"
+      },
+      {
+        "trait_type": "Robe",
+        "value": "Pink Gold Robe"
+      },
+      {
+        "trait_type": "Staff",
+        "value": "Cupid Wand"
+      },
+      {
+        "trait_type": "Familiar",
+        "value": "Heart Cat"
+      },
+      {
+        "trait_type": "Aura",
+        "value": "Rose Petals"
+      },
+      {
+        "trait_type": "Material",
+        "value": "polished wood"
+      },
+      {
+        "trait_type": "Detail",
+        "value": "gentle smile"
+      }
+    ]
+  },
+  {
+    "edition": 2,
+    "name": "LOVE Wizard #002",
+    "alignment": "LOVE",
+    "rarity": "Common",
+    "attributes": [
+      {
+        "trait_type": "Rarity",
+        "value": "Common"
+      },
+      {
+        "trait_type": "Hat",
+        "value": "Bloom Crown"
+      },
+      {
+        "trait_type": "Robe",
+        "value": "Lavender Light Robe"
+      },
+      {
+        "trait_type": "Staff",
+        "value": "Crystal Heart Staff"
+      },
+      {
+        "trait_type": "Familiar",
+        "value": "Lovebird"
+      },
+      {
+        "trait_type": "Aura",
+        "value": "Floating Hearts"
+      },
+      {
+        "trait_type": "Material",
+        "value": "polished wood"
+      },
+      {
+        "trait_type": "Detail",
+        "value": "tiny heart charm"
+      }
+    ]
+  },
+  {
+    "edition": 3,
+    "name": "LOVE Wizard #003",
+    "alignment": "LOVE",
+    "rarity": "Common",
+    "attributes": [
+      {
+        "trait_type": "Rarity",
+        "value": "Common"
+      },
+      {
+        "trait_type": "Hat",
+        "value": "Starheart Cap"
+      },
+      {
+        "trait_type": "Robe",
+        "value": "White Rose Robe"
+      },
+      {
+        "trait_type": "Staff",
+        "value": "Rose Staff"
+      },
+      {
+        "trait_type": "Familiar",
+        "value": "Heart Cat"
+      },
+      {
+        "trait_type": "Aura",
+        "value": "Rainbow Heart Glow"
+      },
+      {
+        "trait_type": "Material",
+        "value": "soft cotton"
+      },
+      {
+        "trait_type": "Detail",
+        "value": "gentle smile"
+      }
+    ]
+  },
+  {
+    "edition": 445,
+    "name": "ANTILOVE Wizard #445",
+    "alignment": "ANTILOVE",
+    "rarity": "Common",
+    "attributes": [
+      {
+        "trait_type": "Rarity",
+        "value": "Common"
+      },
+      {
+        "trait_type": "Hat",
+        "value": "Broken Halo Hat"
+      },
+      {
+        "trait_type": "Robe",
+        "value": "Torn Shadow Robe"
+      },
+      {
+        "trait_type": "Staff",
+        "value": "Thorn Staff"
+      },
+      {
+        "trait_type": "Familiar",
+        "value": "Void Fox"
+      },
+      {
+        "trait_type": "Aura",
+        "value": "Glitch Particles"
+      },
+      {
+        "trait_type": "Dark Humor Accessory",
+        "value": "Love Is Overrated Sign"
+      },
+      {
+        "trait_type": "Material",
+        "value": "dull silver"
+      },
+      {
+        "trait_type": "Detail",
+        "value": "mischievous smirk"
+      }
+    ]
+  },
+  {
+    "edition": 446,
+    "name": "ANTILOVE Wizard #446",
+    "alignment": "ANTILOVE",
+    "rarity": "Common",
+    "attributes": [
+      {
+        "trait_type": "Rarity",
+        "value": "Common"
+      },
+      {
+        "trait_type": "Hat",
+        "value": "Spiked Heart Hat"
+      },
+      {
+        "trait_type": "Robe",
+        "value": "Torn Shadow Robe"
+      },
+      {
+        "trait_type": "Staff",
+        "value": "Void Crystal Staff"
+      },
+      {
+        "trait_type": "Familiar",
+        "value": "Void Fox"
+      },
+      {
+        "trait_type": "Aura",
+        "value": "Void Smoke"
+      },
+      {
+        "trait_type": "Dark Humor Accessory",
+        "value": "Regret Potion"
+      },
+      {
+        "trait_type": "Material",
+        "value": "dull silver"
+      },
+      {
+        "trait_type": "Detail",
+        "value": "mischievous smirk"
+      }
+    ]
+  },
+  {
+    "edition": 447,
+    "name": "ANTILOVE Wizard #447",
+    "alignment": "ANTILOVE",
+    "rarity": "Common",
+    "attributes": [
+      {
+        "trait_type": "Rarity",
+        "value": "Common"
+      },
+      {
+        "trait_type": "Hat",
+        "value": "Thorn Witch Hat"
+      },
+      {
+        "trait_type": "Robe",
+        "value": "Torn Shadow Robe"
+      },
+      {
+        "trait_type": "Staff",
+        "value": "Shadow Rose Staff"
+      },
+      {
+        "trait_type": "Familiar",
+        "value": "Raven"
+      },
+      {
+        "trait_type": "Aura",
+        "value": "Broken Hearts"
+      },
+      {
+        "trait_type": "Dark Humor Accessory",
+        "value": "Love Is Overrated Sign"
+      },
+      {
+        "trait_type": "Material",
+        "value": "dull silver"
+      },
+      {
+        "trait_type": "Detail",
+        "value": "mischievous smirk"
+      }
+    ]
+  }
+]
