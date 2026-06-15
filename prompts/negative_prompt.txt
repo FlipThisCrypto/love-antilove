@@ -1,1 +1,1 @@
-text, words, letters, logo, watermark, signature, frame, trading card, UI panel, blurry, low quality, realistic photo, 3d render, painterly, extra limbs, bad hands, cropped body, duplicate character, gore, explicit violence, nudity.
+text, words, letters, readable sign, caption, logo, watermark, signature, artist name, frame, border, trading card, UI panel, number, blurry, low quality, realistic photo, 3d render, flat vector icon, plain blocky sprite, cropped body, duplicate character, extra limbs, bad hands, gore, explicit violence, nudity.

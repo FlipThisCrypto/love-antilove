@@ -1,4 +1,4 @@
-Premium pixel art fantasy wizard, chibi RPG sprite, full body, centered, transparent background, heart magic, white and pink robes, gold trim, glowing heart staff, cute magical familiar, soft sparkles, rose petals, hopeful expression, clean sharp pixel edges, collectible NFT character, no text, no UI, no border.
+Premium ornate chibi fantasy wizard character, full body, centered, transparent background, high-end collectible sprite illustration with pixel-art inspired crisp edges, oversized decorated wizard hat, large expressive anime eyes, layered robe with lace-like trim, tiny boots, jeweled heart brooches, huge glowing heart staff held beside the body, cute magical familiar near the feet, floating heart charms, soft sparkles, rose petals, pastel white pink lavender and gold palette, hopeful sweet expression, dense accessory detail, clean silhouette, sticker-like transparent PNG character, no words, no letters, no readable signs, no logo, no UI, no border.
 
 Trait match: {trait_sentence}
 Rarity direction: {rarity_sentence}

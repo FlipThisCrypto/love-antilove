@@ -7,26 +7,30 @@ import time
 from pathlib import Path
 
 import requests
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageFilter
 from tqdm import tqdm
 
 from common import PROJECT_ROOT, ensure_output_dirs, load_yaml, output_path, read_json
 
 
 LOVE_PALETTE = {
-    "robe": (255, 214, 232, 255),
+    "robe": (255, 217, 236, 255),
+    "robe_dark": (190, 96, 162, 255),
     "trim": (255, 220, 92, 255),
-    "hat": (255, 245, 248, 255),
-    "staff": (255, 116, 176, 255),
+    "hat": (255, 241, 247, 255),
+    "staff": (221, 76, 145, 255),
     "aura": (255, 162, 203, 160),
+    "line": (96, 48, 76, 255),
 }
 
 ANTILOVE_PALETTE = {
-    "robe": (45, 30, 60, 255),
-    "trim": (180, 32, 74, 255),
-    "hat": (18, 18, 26, 255),
-    "staff": (128, 36, 160, 255),
-    "aura": (94, 38, 140, 170),
+    "robe": (35, 28, 43, 255),
+    "robe_dark": (10, 10, 16, 255),
+    "trim": (196, 28, 91, 255),
+    "hat": (20, 17, 25, 255),
+    "staff": (116, 27, 92, 255),
+    "aura": (139, 21, 91, 175),
+    "line": (10, 8, 14, 255),
 }
 
 
@@ -37,40 +41,100 @@ def prompt_sections(prompt_path: Path) -> tuple[str, str]:
     return positive, negative
 
 
+def draw_heart(draw: ImageDraw.ImageDraw, cx: int, cy: int, r: int, fill: tuple, outline: tuple, width: int = 3) -> None:
+    points = [
+        (cx, cy + r),
+        (cx - int(r * 1.35), cy - int(r * 0.2)),
+        (cx - int(r * 0.75), cy - r),
+        (cx, cy - int(r * 0.45)),
+        (cx + int(r * 0.75), cy - r),
+        (cx + int(r * 1.35), cy - int(r * 0.2)),
+    ]
+    draw.polygon(points, fill=fill)
+    draw.line(points + [points[0]], fill=outline, width=width, joint="curve")
+
+
+def draw_star(draw: ImageDraw.ImageDraw, cx: int, cy: int, r: int, fill: tuple) -> None:
+    draw.polygon([(cx, cy - r), (cx + r // 4, cy - r // 4), (cx + r, cy), (cx + r // 4, cy + r // 4), (cx, cy + r), (cx - r // 4, cy + r // 4), (cx - r, cy), (cx - r // 4, cy - r // 4)], fill=fill)
+
+
 def draw_placeholder(path: Path, record: dict, size: int) -> None:
     palette = LOVE_PALETTE if record["alignment"] == "LOVE" else ANTILOVE_PALETTE
-    scale = size // 128
     img = Image.new("RGBA", (size, size), (0, 0, 0, 0))
+    glow = Image.new("RGBA", (size, size), (0, 0, 0, 0))
+    glow_draw = ImageDraw.Draw(glow)
     draw = ImageDraw.Draw(img)
+    line = palette["line"]
 
-    def rect(coords, color):
-        draw.rectangle([v * scale for v in coords], fill=color)
+    # Soft magical aura, similar to the transparent sample renders.
+    for cx, cy, r in [(512, 500, 250), (655, 635, 165), (370, 650, 135)]:
+        glow_draw.ellipse((cx - r, cy - r, cx + r, cy + r), fill=palette["aura"])
+    img.alpha_composite(glow.filter(ImageFilter.GaussianBlur(24)))
 
-    # Pixel-sprite placeholder: centered, full-body, transparent background.
-    rect((46, 23, 82, 35), palette["hat"])
-    rect((39, 35, 89, 42), palette["hat"])
-    rect((52, 42, 76, 66), (255, 220, 185, 255))
-    rect((49, 66, 79, 98), palette["robe"])
-    rect((43, 74, 51, 93), palette["robe"])
-    rect((77, 74, 85, 93), palette["robe"])
-    rect((52, 98, 62, 112), palette["robe"])
-    rect((66, 98, 76, 112), palette["robe"])
-    rect((49, 66, 79, 72), palette["trim"])
-    rect((62, 66, 66, 98), palette["trim"])
-    rect((86, 45, 90, 102), palette["staff"])
-    rect((82, 42, 94, 54), palette["staff"])
+    # Staff with oversized heart head.
+    draw.line((268, 245, 245, 830), fill=line, width=18)
+    draw.line((268, 245, 245, 830), fill=palette["staff"], width=10)
+    draw_heart(draw, 270, 210, 78, palette["staff"], line, 8)
+    if record["alignment"] == "ANTILOVE":
+        draw.line((250, 145, 292, 273), fill=line, width=7)
+        for thorn_y in [355, 445, 545, 650]:
+            draw.polygon([(253, thorn_y), (213, thorn_y + 28), (253, thorn_y + 18)], fill=line)
+
+    # Familiar near the feet.
+    familiar_fill = (255, 238, 244, 255) if record["alignment"] == "LOVE" else (17, 16, 23, 255)
+    familiar_accent = (248, 91, 154, 255)
+    draw.ellipse((166, 730, 292, 860), fill=familiar_fill, outline=line, width=8)
+    draw.polygon([(180, 738), (205, 682), (230, 744)], fill=familiar_fill, outline=line)
+    draw.polygon([(240, 740), (268, 684), (280, 750)], fill=familiar_fill, outline=line)
+    draw.ellipse((198, 775, 214, 792), fill=line)
+    draw.ellipse((244, 775, 260, 792), fill=line)
+    draw_heart(draw, 232, 820, 18, familiar_accent, line, 3)
+
+    # Wizard body and layered robe.
+    skin = (248, 210, 190, 255)
+    hair = (246, 210, 225, 255) if record["alignment"] == "LOVE" else (210, 186, 212, 255)
+    draw.ellipse((378, 250, 650, 530), fill=hair, outline=line, width=9)
+    draw.ellipse((410, 310, 618, 552), fill=skin, outline=line, width=7)
+    draw.polygon([(370, 545), (653, 545), (725, 842), (301, 842)], fill=palette["robe"], outline=line)
+    draw.polygon([(500, 545), (650, 842), (368, 842)], fill=palette["robe_dark"], outline=line)
+    draw.polygon([(412, 560), (512, 842), (306, 842)], fill=palette["robe"], outline=line)
+    draw.line((512, 560, 512, 835), fill=palette["trim"], width=13)
+    draw.arc((405, 610, 620, 770), 10, 170, fill=palette["trim"], width=10)
+    draw.rectangle((425, 832, 485, 902), fill=palette["robe_dark"], outline=line, width=7)
+    draw.rectangle((555, 832, 615, 902), fill=palette["robe_dark"], outline=line, width=7)
+    draw.ellipse((386, 886, 500, 925), fill=line)
+    draw.ellipse((540, 886, 654, 925), fill=line)
+
+    # Big sample-like hat with drooping tip.
+    brim = [(284, 310), (390, 240), (570, 218), (738, 283), (645, 348), (426, 366)]
+    draw.polygon(brim, fill=palette["hat"], outline=line)
+    cone = [(374, 250), (508, 70), (640, 255), (570, 318), (446, 318)]
+    draw.polygon(cone, fill=palette["hat"], outline=line)
+    draw.line((470, 178, 568, 305), fill=palette["trim"], width=11)
+    draw.arc((515, 48, 746, 265), 255, 40, fill=palette["hat"], width=42)
+    draw_heart(draw, 525, 248, 34, palette["staff"], line, 5)
+
+    # Face.
+    eye = (75, 40, 72, 255) if record["alignment"] == "LOVE" else (218, 37, 100, 255)
+    draw.ellipse((445, 390, 492, 450), fill=eye, outline=line, width=4)
+    draw.ellipse((545, 390, 592, 450), fill=eye, outline=line, width=4)
+    draw.ellipse((457, 402, 471, 419), fill=(255, 255, 255, 255))
+    draw.ellipse((557, 402, 571, 419), fill=(255, 255, 255, 255))
     if record["alignment"] == "LOVE":
-        rect((57, 52, 61, 56), (80, 30, 55, 255))
-        rect((69, 52, 73, 56), (80, 30, 55, 255))
-        rect((60, 58, 70, 62), (190, 75, 115, 255))
-        rect((25, 48, 31, 54), palette["aura"])
-        rect((96, 68, 104, 76), palette["aura"])
+        draw.arc((476, 458, 562, 506), 15, 165, fill=(150, 55, 95, 255), width=5)
     else:
-        rect((56, 52, 61, 56), (230, 230, 240, 255))
-        rect((70, 52, 75, 56), (230, 230, 240, 255))
-        rect((60, 60, 72, 63), (150, 30, 70, 255))
-        rect((24, 46, 34, 56), palette["aura"])
-        rect((94, 67, 106, 79), palette["aura"])
+        draw.arc((475, 470, 560, 510), 200, 340, fill=(150, 35, 82, 255), width=5)
+        draw.line((430, 382, 492, 365), fill=line, width=5)
+        draw.line((545, 365, 607, 382), fill=line, width=5)
+
+    # Textless charms, potion shapes, hearts, petals, and sample-like detail scatter.
+    for cx, cy, r in [(742, 418, 28), (750, 565, 22), (342, 462, 24), (668, 185, 18)]:
+        draw_heart(draw, cx, cy, r, palette["staff"], line, 4)
+    for cx, cy in [(720, 760), (768, 808), (695, 866)]:
+        draw.ellipse((cx - 22, cy - 30, cx + 22, cy + 30), fill=palette["staff"], outline=line, width=5)
+        draw.rectangle((cx - 12, cy - 43, cx + 12, cy - 25), fill=palette["trim"], outline=line, width=4)
+    for cx, cy, r in [(330, 180, 15), (755, 245, 13), (808, 500, 12), (360, 690, 10), (680, 700, 10)]:
+        draw_star(draw, cx, cy, r, palette["trim"])
 
     path.parent.mkdir(parents=True, exist_ok=True)
     img.save(path)
