@@ -182,6 +182,7 @@ def apply_background(path: Path, record: dict) -> None:
     style = load_background_style(attr_value(record, "Background"))
     if not style:
         return
+    remove_corner_background(path)
     character = Image.open(path).convert("RGBA")
     background = draw_background(style, character.width)
     background.alpha_composite(character)
@@ -316,7 +317,6 @@ def copy_latest_comfy_output(edition: int, target_path: Path) -> bool:
         return False
     target_path.parent.mkdir(parents=True, exist_ok=True)
     target_path.write_bytes(matches[0].read_bytes())
-    remove_corner_background(target_path)
     return True
 
 
@@ -343,7 +343,6 @@ def fetch_comfy_result(prompt_id: str, target_path: Path, edition: int, timeout_
                     image_response.raise_for_status()
                     target_path.parent.mkdir(parents=True, exist_ok=True)
                     target_path.write_bytes(image_response.content)
-                    remove_corner_background(target_path)
                     return
         time.sleep(2)
     if copy_latest_comfy_output(edition, target_path):
@@ -371,7 +370,7 @@ def pixelate_image(path: Path, pixel_size: int, palette_colors: int | None = Non
     image.save(path)
 
 
-def remove_corner_background(path: Path, tolerance: int = 34) -> None:
+def remove_corner_background(path: Path, tolerance: int = 42, remove_white_islands: bool = True) -> None:
     image = Image.open(path).convert("RGBA")
     width, height = image.size
     pixels = image.load()
@@ -393,28 +392,40 @@ def remove_corner_background(path: Path, tolerance: int = 34) -> None:
         queue.append((0, y))
         queue.append((width - 1, y))
 
-    def is_background(x: int, y: int) -> bool:
+    def distance_from_bg(x: int, y: int) -> int:
         r, g, b, _ = pixels[x, y]
-        brightness = (r + g + b) / 3
+        return abs(r - bg[0]) + abs(g - bg[1]) + abs(b - bg[2])
+
+    def is_edge_background(x: int, y: int) -> bool:
+        r, g, b, _ = pixels[x, y]
         saturation = max(r, g, b) - min(r, g, b)
-        distance = abs(r - bg[0]) + abs(g - bg[1]) + abs(b - bg[2])
-        return distance < tolerance * 3 or (brightness > 118 and saturation < 42)
+        return distance_from_bg(x, y) <= tolerance and saturation <= 28
+
+    def is_pure_white_background(x: int, y: int) -> bool:
+        r, g, b, _ = pixels[x, y]
+        return r >= 246 and g >= 246 and b >= 246 and max(r, g, b) - min(r, g, b) <= 16
 
     while queue:
         x, y = queue.popleft()
         if (x, y) in visited or not (0 <= x < width and 0 <= y < height):
             continue
         visited.add((x, y))
-        if not is_background(x, y):
+        if not is_edge_background(x, y):
             continue
         alpha_pixels[x, y] = 0
         queue.extend(((x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)))
+
+    if remove_white_islands:
+        for y in range(height):
+            for x in range(width):
+                if alpha_pixels[x, y] == 255 and is_pure_white_background(x, y):
+                    alpha_pixels[x, y] = 0
 
     for x, y in visited:
         if alpha_pixels[x, y] == 0:
             for nx in range(max(0, x - 1), min(width, x + 2)):
                 for ny in range(max(0, y - 1), min(height, y + 2)):
-                    if alpha_pixels[nx, ny] != 0 and is_background(nx, ny):
+                    if alpha_pixels[nx, ny] != 0 and is_edge_background(nx, ny):
                         alpha_pixels[nx, ny] = 96
     image.putalpha(alpha.filter(ImageFilter.GaussianBlur(0.6)))
     image.save(path)
