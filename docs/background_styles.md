@@ -66,6 +66,23 @@ outputs/variants/64bit/images/
 outputs/reports/64bit_orange_bg_sheet.jpg
 ```
 
+## Prompt-Native Background Mode
+
+The preferred direction is now prompt-native backgrounds: the selected `Background` trait is added to the ComfyUI prompt, and the img2img reference is placed on that same background before sampling. This avoids transparency cleanup and lets the model paint the character and background together.
+
+Run:
+
+```powershell
+python scripts/generate_bit_variants.py --image-mode comfyui --size 1024 --love 3 --antilove 3 --seed 904 --presets 64bit --background-mode prompt
+```
+
+Output:
+
+```text
+outputs/variants/64bit/images/
+outputs/reports/64bit_prompt_bg_sheet.jpg
+```
+
 ## New Preview Styles
 
 Blockchain preview styles:

@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import argparse
 
-from common import PROJECT_ROOT, ensure_output_dirs, output_path, read_json, read_text
+from common import PROJECT_ROOT, ensure_output_dirs, load_yaml, output_path, read_json, read_text
 
 
 STYLE_PRESETS = {
@@ -31,12 +31,46 @@ STYLE_PRESETS = {
 }
 
 
+BACKGROUND_PROMPTS = {
+    "Amber Wash": "Background: warm amber orange pixel gradient backdrop, simple clean collectible NFT background, no text.",
+    "Apricot Glow": "Background: soft apricot orange radial glow behind the character, clean pixel backdrop, no text.",
+    "Peach Pixel Mist": "Background: peach orange pixel mist with tiny square dithering, clean retro backdrop, no text.",
+    "Sunset Flat": "Background: sunset orange flat dithered pixel backdrop, warm and simple, no text.",
+    "Blood Orange Bloom": "Background: blood orange radial bloom, warm circular glow and darker orange corners, no text.",
+    "Tangerine Sparks": "Background: tangerine orange backdrop with small pixel sparkles, collectible retro NFT background, no text.",
+    "Coral Heatwave": "Background: coral orange heatwave pixel pattern with warm dithered texture, no text.",
+    "Ember Halo": "Background: rare ember orange halo with subtle sunburst rays behind the character, no text.",
+    "Molten Rose": "Background: rare molten rose orange and dark red pixel pattern, dramatic warm backdrop, no text.",
+    "Pumpkin Eclipse": "Background: rare pumpkin orange eclipse circle with dark burnt orange outer ring, no text.",
+    "Infernal Gold": "Background: epic infernal orange and gold radial rays, premium rare NFT backdrop, no text.",
+    "Solar Blood Moon": "Background: legendary solar blood moon aura, deep red orange gold pixel radiance, no text.",
+    "Blockchain Ember Grid": "Background: rare blockchain ember grid, orange node network and subtle chain geometry behind the character, no text.",
+    "Tangerine Chainlink": "Background: rare tangerine chainlink pattern, orange blockchain links and node grid, no text.",
+    "Tang Gang Flame Wall": "Background: epic Tang Gang flame wall, dark blood orange with rising orange flames and premium pixel sparks, no text.",
+    "Tang Gang Crown": "Background: legendary Tang Gang crown backdrop, dark blood orange aura with golden crown geometry and flame accents, no text.",
+}
+
+
 def trait_sentence(record: dict) -> str:
     pieces = []
     for attr in record["attributes"]:
         if attr["trait_type"] != "Rarity":
             pieces.append(f'{attr["trait_type"]}: {attr["value"]}')
     return ", ".join(pieces)
+
+
+def attr_value(record: dict, trait_type: str) -> str | None:
+    for attr in record.get("attributes", []):
+        if attr.get("trait_type") == trait_type:
+            return attr.get("value")
+    return None
+
+
+def background_sentence(record: dict) -> str:
+    background = attr_value(record, "Background")
+    if not background:
+        return "Background: warm orange pixel-art collectible backdrop, no text."
+    return BACKGROUND_PROMPTS.get(background, f"Background: {background}, orange pixel-art collectible backdrop, no text.")
 
 
 def rarity_sentence(record: dict) -> str:
@@ -67,6 +101,7 @@ def generate(resume: bool, style_preset: str) -> None:
         positive = template.format(
             trait_sentence=trait_sentence(record),
             rarity_sentence=rarity_sentence(record),
+            background_sentence=background_sentence(record),
         )
         prefix = STYLE_PRESETS[style_preset]
         if prefix:

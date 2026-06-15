@@ -272,18 +272,25 @@ def draw_placeholder(path: Path, record: dict, size: int) -> None:
     img.save(path)
 
 
-def prepare_reference_image(alignment: str, size: int) -> str:
+def prepare_reference_image(alignment: str, size: int, background_style: dict | None = None) -> str:
     source_name = "sample2.png" if alignment == "LOVE" else "sample4.png"
     source = PROJECT_ROOT.parent / source_name
     comfy_input = PROJECT_ROOT.parent / "ComfyUI" / "input"
     comfy_input.mkdir(parents=True, exist_ok=True)
-    target_name = f"{alignment.lower()}_reference_{size}.png"
+    suffix = ""
+    if background_style:
+        suffix = "_" + background_style["name"].lower().replace(" ", "_").replace("/", "_")
+    target_name = f"{alignment.lower()}_reference_{size}{suffix}.png"
     target = comfy_input / target_name
     if not target.exists() or target.stat().st_mtime < source.stat().st_mtime:
         image = Image.open(source).convert("RGBA")
         image.thumbnail((size, size), Image.Resampling.LANCZOS)
-        canvas = Image.new("RGBA", (size, size), (255, 255, 255, 255))
+        if background_style:
+            canvas = draw_background(background_style, size)
+        else:
+            canvas = Image.new("RGBA", (size, size), (255, 255, 255, 255))
         canvas.alpha_composite(image, ((size - image.width) // 2, (size - image.height) // 2))
+        canvas.putalpha(255)
         canvas.save(target)
     return target_name
 
@@ -437,6 +444,7 @@ def generate(
     size_override: int | None = None,
     pixel_size: int = 1,
     palette_colors: int | None = None,
+    background_mode: str = "composite",
 ) -> None:
     ensure_output_dirs()
     config = load_yaml(PROJECT_ROOT / "config" / "collection.yaml")
@@ -452,11 +460,15 @@ def generate(
         positive, negative = prompt_sections(prompt_path)
         if mode == "placeholder":
             draw_placeholder(image_path, record, size)
-            apply_background(image_path, record)
+            if background_mode == "composite":
+                apply_background(image_path, record)
+            else:
+                Image.open(image_path).convert("RGBA").save(image_path)
             pixelate_image(image_path, pixel_size, palette_colors)
         elif mode == "comfyui":
             output_prefix = f"love_antilove/{edition:03d}"
-            reference_image = prepare_reference_image(record["alignment"], size)
+            reference_style = load_background_style(attr_value(record, "Background")) if background_mode == "prompt" else None
+            reference_image = prepare_reference_image(record["alignment"], size, reference_style)
             prompt_id = queue_comfy(
                 positive,
                 negative,
@@ -466,7 +478,12 @@ def generate(
                 reference_image,
             )
             fetch_comfy_result(prompt_id, image_path, edition)
-            apply_background(image_path, record)
+            if background_mode == "composite":
+                apply_background(image_path, record)
+            else:
+                image = Image.open(image_path).convert("RGBA")
+                image.putalpha(255)
+                image.save(image_path)
             pixelate_image(image_path, pixel_size, palette_colors)
             print(f"Saved ComfyUI result for {edition:03d} to {image_path}")
             time.sleep(0.15)
@@ -482,8 +499,9 @@ def main() -> None:
     parser.add_argument("--size", type=int, default=None, help="Override square image size for this run.")
     parser.add_argument("--pixel-size", type=int, default=1, help="Postprocess pixel block size. Use 1 to disable.")
     parser.add_argument("--palette-colors", type=int, default=None, help="Quantize final image to this many colors.")
+    parser.add_argument("--background-mode", choices=["composite", "prompt"], default="composite")
     args = parser.parse_args()
-    generate(args.mode, args.resume, args.size, args.pixel_size, args.palette_colors)
+    generate(args.mode, args.resume, args.size, args.pixel_size, args.palette_colors, args.background_mode)
 
 
 if __name__ == "__main__":

@@ -41,6 +41,7 @@ def main() -> None:
     parser.add_argument("--size", type=int, default=512)
     parser.add_argument("--seed", type=int, default=900)
     parser.add_argument("--image-mode", choices=["placeholder", "comfyui"], default="comfyui")
+    parser.add_argument("--background-mode", choices=["composite", "prompt"], default="composite")
     parser.add_argument("--presets", nargs="+", choices=sorted(PRESETS), default=["8bit", "16bit", "32bit"])
     args = parser.parse_args()
 
@@ -66,6 +67,8 @@ def main() -> None:
                 str(settings["palette_colors"]),
                 "--style-preset",
                 preset,
+                "--background-mode",
+                args.background_mode,
                 "--seed",
                 str(args.seed + index),
             ]

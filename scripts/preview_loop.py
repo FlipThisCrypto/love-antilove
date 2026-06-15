@@ -109,6 +109,8 @@ def run_iteration(iteration: int, args: argparse.Namespace) -> Path:
         image_command.extend(["--pixel-size", str(args.pixel_size)])
     if args.palette_colors is not None:
         image_command.extend(["--palette-colors", str(args.palette_colors)])
+    if args.background_mode is not None:
+        image_command.extend(["--background-mode", args.background_mode])
     run_step(image_command)
     run_step([sys.executable, "scripts/create_metadata.py"])
     run_step([sys.executable, "scripts/rarity_report.py"])
@@ -136,6 +138,7 @@ def main() -> None:
     parser.add_argument("--size", type=int, default=None, help="Override square image size for this run.")
     parser.add_argument("--pixel-size", type=int, default=None, help="Postprocess pixel block size.")
     parser.add_argument("--palette-colors", type=int, default=None, help="Quantize final image to this many colors.")
+    parser.add_argument("--background-mode", choices=["composite", "prompt"], default=None)
     parser.add_argument(
         "--reference-dir",
         type=Path,
